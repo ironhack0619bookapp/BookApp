@@ -29,4 +29,17 @@ h2 {
   width: 30%;
   text-align: center; }
 
+.username, .pass {
+  text-align: initial;
+  padding-left: 50px;
+  margin: 10px 0px; }
+
+.btn {
+  margin: 20px 0px; }
+
+.profile {
+  height: 100px;
+  width: 100px;
+  border-radius: 150px; }
+
 /*# sourceMappingURL=style.css.map */

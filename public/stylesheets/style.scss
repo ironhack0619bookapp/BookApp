@@ -36,6 +36,18 @@ h2{
   text-align: center
 }
 
-// .sign{
+.username, .pass{
+  text-align: initial;
+  padding-left: 50px;
+  margin:10px 0px;
+}
 
-// }
+.btn{
+  margin: 20px 0px;
+}
+
+.profile{
+  height: 100px;
+  width: 100px;
+  border-radius: 150px;
+}
