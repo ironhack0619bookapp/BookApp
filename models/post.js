@@ -2,9 +2,10 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const postSchema = new Schema({
+  title: String,
   //Populate books data ie: title, author, description, image, price.
 
-  //Populate user data ie: name, email, phone number, location
+  //Populate  data ie: name, email, phone number, location
   price: Number,
   description: String,
   type: {
