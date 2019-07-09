@@ -1,7 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const Post = require("../models/post");
-const Book = require("../models/book")
+const Book = require("../models/book");
+const axios = require("axios");
 
 /* GET home page */
 router.get("/", (req, res, next) => {
@@ -76,19 +77,45 @@ router.get("/bookresult", (req, res, next) => {
 });
 
 router.post("/bookresult", (req, res, next) => {
-  const bookTitle = req.body.bookTitle
-  console.log(bookTitle)
-  Book.findOne({title: bookTitle})
+  const bookTitle = req.body.bookTitle;
+  const bookAuthor = req.body.bookAuthor;
+  //console.log(bookTitle)
+  Book.findOne({ title: bookTitle } || {author: bookAuthor })
     .then(book => {
-      res.render("bookresult", {book});
+      if (book == null) {
+        // bookTitle == null? bookTitle = bookAuthor: null
+        console.log("**************************");
+        axios
+          .get(`https://www.googleapis.com/books/v1/volumes?q=${bookTitle}`)
+          .then(bookData => {
+            const {
+              title,
+              authors,
+              description,
+              imageLinks
+            } = bookData.data.items[0].volumeInfo;
+            const isbn =
+              bookData.data.items[0].volumeInfo.industryIdentifiers[1]
+                .identifier;
+            const image = Object.values(imageLinks)[0];
+            let book = {
+              title: title,
+              author: authors,
+              description: description,
+              isbn: isbn,
+              image: image
+            };
+            console.log(isbn);
+
+            res.render("bookresult", { book });
+          });
+      } else {
+        res.render("bookresult", { book });
+      }
     })
     .catch(error => {
       console.log(error);
     });
-  
 });
-
-
-
 
 module.exports = router;
