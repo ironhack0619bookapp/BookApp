@@ -9,7 +9,7 @@ a {
 }
 
 h2{
-  font-size: 30px;
+  font-size: 50px;
 }
 
 .background{
@@ -20,7 +20,6 @@ h2{
   background-size: 100% 100%;
   display:flex;
   align-items: center;
-  justify-content: center;
 }
 
 .container{
@@ -36,7 +35,7 @@ h2{
   text-align: center
 }
 
-.username, .pass{
+.username, .pass, .email, .name{
   text-align: initial;
   padding-left: 50px;
   margin:10px 0px;
@@ -88,4 +87,10 @@ h2{
 .footer-pict{
   height: 40px;
   width: 200px;
+}
+
+#map{
+  height: 500px;
+  width: 800px;
+  margin-top: 100px;
 }

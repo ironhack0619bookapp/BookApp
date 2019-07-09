@@ -6,7 +6,7 @@ a {
   color: #00B7FF; }
 
 h2 {
-  font-size: 30px; }
+  font-size: 50px; }
 
 .background {
   background-image: url("../images/background2.jpg");
@@ -15,8 +15,7 @@ h2 {
   height: 100vh;
   background-size: 100% 100%;
   display: flex;
-  align-items: center;
-  justify-content: center; }
+  align-items: center; }
 
 .container {
   display: flex;
@@ -29,7 +28,7 @@ h2 {
   width: 30%;
   text-align: center; }
 
-.username, .pass {
+.username, .pass, .email, .name {
   text-align: initial;
   padding-left: 50px;
   margin: 10px 0px; }
@@ -73,5 +72,10 @@ h2 {
 .footer-pict {
   height: 40px;
   width: 200px; }
+
+#map {
+  height: 500px;
+  width: 800px;
+  margin-top: 100px; }
 
 /*# sourceMappingURL=style.css.map */
