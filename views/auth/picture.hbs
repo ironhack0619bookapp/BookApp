@@ -1,0 +1,16 @@
+<p>Upload your new profile picture</p>
+<form action="./update-pict" method="POST" id="form-container" enctype="multipart/form-data">
+  <section>
+    <div>
+        <img class="profile" src="{{user.imgPath}}" alt="{{imgName}}">
+    </div>
+    <input type="file" name="photo">
+  </section>
+  <br>
+  {{#if message }}
+  <div class="error-message">{{ message }}</div>
+  {{/if}}
+
+  <br><br>
+
+  <button>Upload Picture</button>
