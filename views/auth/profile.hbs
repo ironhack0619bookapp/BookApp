@@ -3,10 +3,17 @@
         <img class="profile" src="{{user.image}}">
     </div>
     <div class="data-container">
-        <h2>Welcome {{user.username}}</h2>
+        <h2>Welcome {{user.name}}</h2>
     </div>
 </div>
 <br><br><br><br>
+<a href="./all-users">All users</a>
+
+<form action="../auth/{{user.id}}/edit" method="POST">
+    <button onclick="Submit">Edit your data</button>
+</form>
+
+<a href="../book/finder">Find Book</a>
 {{!-- <h3>Post here...</h3>
 <form action="/post/new-post" method="POST" id="form-container" enctype="multipart/form-data">
     <label for="content"></label>

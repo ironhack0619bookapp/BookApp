@@ -46,12 +46,49 @@ h2{
   margin: 20px 0px;
 }
 
+.container-profile{
+  display: flex;
+  flex-direction: row;
+  padding: 50px;
+}
+
 .profile{
   height: 100px;
   width: 100px;
   border-radius: 150px;
 }
 
+.data-container{
+  margin-left: 50px;
+}
+
+.users{
+  display:flex;
+  flex-wrap: wrap;
+}
+
+.user{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  padding-right: 100px;
+  padding-left: 100px;
+  padding-bottom: 50px;
+}
+
+.footer{
+  background-color: white;
+  text-align: center;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+.footer-pict{
+  height: 40px;
+  width: 200px;
+}
 .searchResults{
   text-align: center;
 }
@@ -64,7 +101,6 @@ h2{
 }
 .searchResults img{
   margin-left: 20px;
-  
   max-width:600px;
   max-height:300px;
   width: auto;
