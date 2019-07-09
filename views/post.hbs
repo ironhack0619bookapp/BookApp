@@ -1,0 +1,20 @@
+<form action="/posted-ad" method="POST">
+  Title:<br>
+  <input type="text" name="postTitle">
+  <br> Price: <br>
+  <input type="number" name="postPrice">
+  <br> Type:
+  <select required name="postType" required="true">
+    <option value="">None</option>
+    <option value="venta">Sell</option>
+    <option value="intercambio">Swap</option>
+  </select>
+  <br>
+  Description:<br>
+  <textarea name="postDescription" rows="10" cols="40"
+    placeholder="Enter a brief description about the book, ie: title, author, price..."
+    maxlength="50">
+  </textarea>
+  <br>
+  <button type="submit">Add post</button>
+</form>
