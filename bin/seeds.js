@@ -324,27 +324,57 @@ let books = [
 //     throw err
 //   })
 
-// let posts = [
-  // {
-  //   price: "Sinsajo / Mockingjay",
-  //   description: "Suzanne Collins",
-  //   type: "Katnis Everdeen ha sobrevivido dos veces a Los juegos del hambre, pero no está a salvo. La revolución se extiende y, al parecer, todos han tenido algo que ver en el meticuloso plan, todos excepto Katniss. Aun así su papel en la batalla final es el más importante de todos. Katniss debe convertirse en el Sinsajo, en el símbolo de la rebelión... a cualquier precio. ¡Que empiecen los septuagésimo sextos juegos del hambre!",
-  // },
-// ]
+let Post = [
+  {
+    title: "Sinsajo / Mockingjay",
+    price: 14,
+    description: "Suzanne Collins",
+    type: "intercambio",
+    description: "Katnis Everdeen ha sobrevivido dos veces a Los juegos del hambre, pero no está a salvo. La revolución se extiende y, al parecer, todos han tenido algo que ver en el meticuloso plan, todos excepto Katniss. Aun así su papel en la batalla final es el más importante de todos. Katniss debe convertirse en el Sinsajo, en el símbolo de la rebelión... a cualquier precio. ¡Que empiecen los septuagésimo sextos juegos del hambre!"
+  },
+  {
+    title: "Juego De Tronos",
+    price: 50,
+    description: "George RR Martin",
+    type: "venta",
+    description: "Tras el largo verano, el invierno se acerca a los Siete Reinos. Lord Eddars Stark, señor de Invernalia, deja sus dominios para unirse a la corte del rey Robert Baratheon el Usurpador, hombre díscolo y otrora guerrero audaz cuyas mayores aficiones son comer, beber y engendrar bastardos. Eddard Stark desempeñará el cargo de Mano del Rey e intentará desentrañar una maraña de intrigas que pondrá en peligro su vida... y la de los suyos."
+  },
+  {
+    title: "Los Juegos Del Hambre",
+    price: 23,
+    description: "Suzanne Collins",
+    type: "venta",
+    description: "En lo que alguna vez fue Norteamérica, la Capital de Panem mantiene sus 12 distritos obligándolos a seleccionar a un niño y a una niña, llamados Tributos, a competir en un evento televisado nacionalmente llamado los Juegos del Hambre. Cada ciudadano debe ver pelear a muerte a los jóvenes. El Tributo del Distrito 12, Katniss Everdeen, solo confía en sus habilidades de caza y buenos instintos en una arena en donde debe sobrevivir contra la humanidad."
+  },
+  {
+    title: "Harry Potter y La Piedra Filosofal",
+    price: 17,
+    description: "JK Rowling",
+    type: "intercambio",
+    description: "El día de su cumpleaños, Harry Potter descubre que es hijo de dos conocidos hechiceros, de los que ha heredado poderes mágicos. Debe asistir a una famosa escuela de magia y hechicería, donde entabla una amistad con dos jóvenes que se convertirán en sus compañeros de aventura. Durante su primer año en Hogwarts, descubre que un malévolo y poderoso mago llamado Voldemort está en busca de una piedra filosofal que alarga la vida de quien la posee."
+  },
+  {
+    title: "El Juego Del Ángel",
+    price: 8,
+    description: "Carlos Ruíz Zafón",
+    type: "venta",
+    description: " En la turbulenta Barcelona de los años 20 un joven escritor obsesionado con un amor imposible recibe la oferta de un misterioso editor para escribir un libro como no ha existido nunca, a cambio de una fortuna y, tal vez, mucho más."
+  },
+]
 
-// Post.deleteMany()
-// .then(() => {
-//   return Post.create(posts)
-// })
-// .then(postsCreated => {
-//   console.log(`${postsCreated.length} post created with the following id:`);
-//   console.log(postsCreated.map(u => u._id));
-// })
-// .then(() => {
-//   // Close properly the connection to Mongoose
-//   mongoose.disconnect()
-// })
-// .catch(err => {
-//   mongoose.disconnect()
-//   throw err
-// })
+Post.deleteMany()
+.then(() => {
+  return Post.create(posts)
+})
+.then(postsCreated => {
+  console.log(`${postsCreated.length} post created with the following id:`);
+  console.log(postsCreated.map(u => u._id));
+})
+.then(() => {
+  // Close properly the connection to Mongoose
+  mongoose.disconnect()
+})
+.catch(err => {
+  mongoose.disconnect()
+  throw err
+})

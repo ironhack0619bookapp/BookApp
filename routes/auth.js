@@ -46,17 +46,17 @@ router.post("/login", passport.authenticate("local", {
 
 
 // OAuth callback url
-router.get('/slack/callback', 
-  passport.authenticate('slack', { failureRedirect: '/login' }),
-  (req, res) => {
-    res.redirect('/')
-  }
-);
+// router.get('/slack/callback', 
+//   passport.authenticate('slack', { failureRedirect: '/login' }),
+//   (req, res) => {
+//     res.redirect('/')
+//   }
+// );
 
 // path to start the OAuth flow
-router.get('/slack', passport.authenticate('slack'), (req, res, next) => {
-  next()
-});
+// router.get('/slack', passport.authenticate('slack'), (req, res, next) => {
+//   next()
+// });
 
 router.get("/signup", (req, res, next) => {
   res.render("auth/signup");

@@ -1,0 +1,16 @@
+{{#each book}}
+<div>
+  <form action="bookApiResult" method="POST">
+    <h4 name="bookTitle">
+      {{this.volumeInfo.title}}
+    </h4>
+    <br>
+    <p name="bookAuthor">{{this.volumeInfo.authors}}</p>
+    <br>
+    <p name="bookDescription"> {{this.volumeInfo.description}} </p>
+    <button type="submit" name="selectbtn">Select</button>
+  </form>
+
+</div>
+
+{{/each}}
