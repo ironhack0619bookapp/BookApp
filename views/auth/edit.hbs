@@ -1,0 +1,27 @@
+<h2>Update data for {{name}}</h2>
+<img src="{{image}}" class="profile" id="picture">
+<a href="">Change the picture</a>
+<br><br>
+<form action="../update/{{id}}" method="POST">
+    <label for="username">Username: </label>
+    <input type="text" value="{{username}}" placeholder="username" name="usernameForm" id="username">
+    <label for="name">Name: </label>
+    <input type="text" value="{{name}}" placeholder="Name" name="nameForm" id="name">
+    <label for="email">Email: </label>
+    <input type="email" value="{{email}}" placeholder="Email" name="emailForm" id="email">
+    <label for="phone">Phone: </label>
+    <input type="phone" value="{{phone}}" placeholder="Phone" name="phoneForm" id="phone">
+    <label for="location">Location:</label>
+    {{#if errorMessage}}
+    <div style="padding:20px; background: red;">
+        {{errorMessage}}
+    </div>
+    {{/if}}
+    <br><br>
+    <button onclick="Submit">Update</button>
+</form>
+
+<br><br>
+<a href="../security">Change your password</a>
+<br><br>
+<a href="../profile">Return to Profile</a>

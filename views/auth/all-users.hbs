@@ -1,0 +1,13 @@
+<h1>BookApp Users</h1>
+
+<div class="users">
+{{#each users}}
+    <div class="user">
+        <img src="{{this.image}}" alt="{{this.username}} Picture" class="profile">
+        <h4>{{this.username}}</h4>
+        <a href="user/{{id}}">See more</a>
+    </div>
+{{/each}}
+</div>
+
+<a href="./profile">Return to Profile</a>

@@ -29,7 +29,7 @@ let users = [
     phone: "625901738",
     lng: -3.7025600,
     lat: 40.4165000,
-    image: "http://lorempixel.com/350/350/",
+    image: "https://content-static.upwork.com/uploads/2014/10/01073427/profilephoto1.jpg",
     type: "user",
   },
   {
@@ -40,7 +40,7 @@ let users = [
     phone: "639023421",
     lng: -3.4025600,
     lat: 40.7165000,
-    image: "http://lorempixel.com/350/350/",
+    image: "https://data.whicdn.com/images/55805982/large.jpg",
     type: "user",
   },
   {
@@ -51,7 +51,7 @@ let users = [
     phone: "638923724",
     lng: -3.4925600,
     lat: 40.7565000,
-    image: "http://lorempixel.com/350/350/",
+    image: "https://i.ebayimg.com/images/g/IIEAAOSwBt5ZNIwr/s-l1600.jpg",
     type: "user",
   },
   {
@@ -62,7 +62,7 @@ let users = [
     phone: "637826335",
     lng: -3.5625600,
     lat: 40.3665000,
-    image: "http://lorempixel.com/350/350/",
+    image: "http://www.allsparkfireworks.com/blog/wp-content/uploads/2014/03/firework-sparkler-girl.jpg",
     type: "user",
   },
   {
@@ -73,7 +73,7 @@ let users = [
     phone: "689002318",
     lng: -3.2525600,
     lat: 40.8065000,
-    image: "http://lorempixel.com/350/350/",
+    image: "https://a.deviantart.net/avatars-big/v/a/vampir-cat.jpg?4",
     type: "user",
   },
   {
@@ -84,7 +84,7 @@ let users = [
     phone: "666666666",
     lng: -3.7025600,
     lat: 40.4165000,
-    image: "http://lorempixel.com/350/350/",
+    image: "https://icreatived.com/wp-content/uploads/2014/10/Interesting-Creative-Facebook-Profile-Picture-Ideas-25.jpg",
     type: "admin",
   },
   {
@@ -95,7 +95,7 @@ let users = [
     phone: "659037784",
     lng: -3.3025600,
     lat: 40.0165000,
-    image: "http://lorempixel.com/350/350/",
+    image: "https://thewondrous.com/wp-content/uploads/2015/07/beautiful-profile-pics.jpg",
     type: "user",
   },
   {
@@ -106,7 +106,7 @@ let users = [
     phone: "690883482",
     lng: -3.8125600,
     lat: 40.8865000,
-    image: "http://lorempixel.com/350/350/",
+    image: "https://profilepicturesdp.com/wp-content/uploads/2018/07/profile-picture-natural-7.jpg",
     type: "user",
   },
   {
@@ -117,7 +117,7 @@ let users = [
     phone: "689332401",
     lng: -3.1235600,
     lat: 40.9905000,
-    image: "http://lorempixel.com/350/350/",
+    image: "https://www.whatsappprofiledpimages.com/wp-content/uploads/2019/01/Nature-Profile-Picture-1-300x241.jpg",
     type: "user",
   },
   {
@@ -128,7 +128,7 @@ let users = [
     phone: "666903286",
     lng: -3.2025600,
     lat: 40.0165000,
-    image: "http://lorempixel.com/350/350/",
+    image: "https://www.whatsappprofiledpimages.com/wp-content/uploads/2018/07/nature-profile5-300x289.jpg",
     type: "user",
   },
 ]

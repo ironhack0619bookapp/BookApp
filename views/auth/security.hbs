@@ -1,0 +1,16 @@
+<form action="./password/{{user.id}}" method="POST">
+    <label for="password">Current Password: </label>
+    <input type="password" placeholder="Password" name="passwordForm" id="password">
+    <br><br>
+    <label for="password2">New Password: </label>
+    <input type="password" placeholder="New password" name="newpasswordForm" id="password2">
+    <label for="password3">Repeat New Password: </label>
+    <input type="password" placeholder="New password" name="newpassword2Form" id="password3">
+    {{#if errorMessage}}
+    <div style="padding:20px; background: red;">
+        {{errorMessage}}
+    </div>
+    {{/if}}
+    <br><br>
+    <button onclick="Submit">Change Password</button>
+</form>
