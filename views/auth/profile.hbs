@@ -1,16 +1,26 @@
-<div class="container-profile">
-    <div>
-        <img class="profile" src="{{user.image}}">
-    </div>
-    <div class="data-container">
-        <h2>Welcome {{user.name}}</h2>
-    </div>
-</div>
-<br><br><br><br>
-<a href="./all-users">All users</a>
+<h2>Profile of {{user.name}}</h2>
+<img src="{{user.imgPath}}" alt="{{user.imgName}}" class="profile" id="picture">
+<br><br>
+<label for="username">Username: </label>
+<h3>{{user.username}}</h3>
+<h3>{{user.name}}</h3>
+<h3>{{user.email}}</h3>
+<h3>{{user.phone}}</h3>
+<label for="location">Location (Longitude / Latitude):</label>
+<h3>{{user.location.coordinates}}</h3>
+<div id="map">
 
-<form action="../auth/{{user.id}}/edit" method="POST">
-    <button onclick="Submit">Edit your data</button>
-</form>
-
+<<<<<<< HEAD
 <a href="../book/finder">Find Book</a>
+=======
+</div>
+<br><br>
+<form action="../auth/{{user.id}}/edit" method="GET">
+  <button onclick="Submit">Edit your data</button>
+</form>
+<br><br>
+<a href="./index">Return to Menu</a>
+
+{{!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDUeQXCyJDlhOtCB8JwWAk8zCxpjk6k-jo"></script> --}}
+>>>>>>> e019b92e9cb92fca3a2db3b76997fe266ef95f50
