@@ -88,4 +88,22 @@ h2{
 .footer-pict{
   height: 40px;
   width: 200px;
+
+.searchResults{
+  text-align: center;
+}
+.searchResults{
+  display: flex;
+  justify-content: center;
+}
+.searchResults p{
+  text-align: justify;
+}
+.searchResults img{
+  margin-left: 20px;
+  
+  max-width:600px;
+  max-height:300px;
+  width: auto;
+  height: auto;
 }

@@ -8,6 +8,7 @@ const postSchema = new Schema({
   //Populate  data ie: name, email, phone number, location
   price: Number,
   description: String,
+  author: { type: Schema.Types.ObjectId, ref: "User" },
   type: {
     type: String, enum: ["intercambio", "venta"]
   }
