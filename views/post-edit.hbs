@@ -1,0 +1,15 @@
+<form action="/update/{{post._id}}" method="POST">
+  <label for="">Title:</label>
+  <input type="text" name="postTitle" value="{{post.title}}">
+  <br>
+  <label for="">Price:</label>
+  <input type="number" name="postPrice" value="{{post.price}}">
+  <br>
+  <label for="">Type:</label>
+  <input type="text" name="postType" value="{{post.type}}">
+  <br>
+  <label for="">Description:</label> <br>
+  <textarea name="postDescription" rows="10" cols="40">{{post.description}}</textarea>
+  <br>
+  <button type="submit">EDIT</button>
+</form>
