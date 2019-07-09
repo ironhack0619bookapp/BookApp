@@ -3,6 +3,8 @@
 // To execute this seed, run from the root of the project
 // $ node bin/seeds.js
 
+require('dotenv').config();
+
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const User = require("../models/user");
@@ -12,9 +14,42 @@ const Book = require("../models/book");
 const bcryptSalt = 10;
 
 mongoose
-  .connect('mongodb://localhost/bookapp', {useNewUrlParser: true})
+  .connect(process.env.BB_DD_ATLAS, {useNewUrlParser: true})
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
+    User.deleteMany()
+      .then(() => {
+        return User.create(users)
+      })
+      .then(usersCreated => {
+        console.log(`${usersCreated.length} users created with the following id:`);
+        console.log(usersCreated.map(u => u._id));
+      })
+      .then(() => {
+        // Close properly the connection to Mongoose
+        mongoose.disconnect()
+      })
+      .catch(err => {
+        mongoose.disconnect()
+        throw err
+      })
+
+    Book.deleteMany()
+      .then(() => {
+        return Book.create(books)
+      })
+      .then(booksCreated => {
+        console.log(`${booksCreated.length} book created with the following id:`);
+        console.log(booksCreated.map(u => u._id));
+      })
+      .then(() => {
+        // Close properly the connection to Mongoose
+        mongoose.disconnect()
+      })
+      .catch(err => {
+        mongoose.disconnect()
+        throw err
+      })
   })
   .catch(err => {
     console.error('Error connecting to mongo', err)
@@ -27,10 +62,15 @@ let users = [
     password: bcrypt.hashSync("alice", bcrypt.genSaltSync(bcryptSalt)),
     email: "alice@yahoo.es",
     phone: "625901738",
-    lng: -3.7025600,
-    lat: 40.4165000,
-    image: "https://content-static.upwork.com/uploads/2014/10/01073427/profilephoto1.jpg",
+    location : { 
+      type: 'Point', 
+      coordinates: [-3.7025600, 40.4165000], 
+    },
+    imgName: "",
+    imgPath: "https://content-static.upwork.com/uploads/2014/10/01073427/profilephoto1.jpg",
     type: "user",
+    token: "",
+    status: "Active",
   },
   {
     name: "Bob Lirem",
@@ -38,10 +78,15 @@ let users = [
     password: bcrypt.hashSync("bob", bcrypt.genSaltSync(bcryptSalt)),
     email: "bob1979@gmail.com",
     phone: "639023421",
-    lng: -3.4025600,
-    lat: 40.7165000,
-    image: "https://data.whicdn.com/images/55805982/large.jpg",
+    location : { 
+      type: 'Point', 
+      coordinates: [-3.4025600, 40.7165000], 
+    },
+    imgName: "",
+    imgPath: "https://data.whicdn.com/images/55805982/large.jpg",
     type: "user",
+    token: "",
+    status: "Active",
   },
   {
     name: "Arlem Basim",
@@ -49,10 +94,15 @@ let users = [
     password: bcrypt.hashSync("arlem", bcrypt.genSaltSync(bcryptSalt)),
     email: "arlem@icloud.com",
     phone: "638923724",
-    lng: -3.4925600,
-    lat: 40.7565000,
-    image: "https://i.ebayimg.com/images/g/IIEAAOSwBt5ZNIwr/s-l1600.jpg",
+    location : { 
+      type: 'Point', 
+      coordinates: [-3.4925600, 40.7565000], 
+    },
+    imgName: "",
+    imgPath: "https://i.ebayimg.com/images/g/IIEAAOSwBt5ZNIwr/s-l1600.jpg",
     type: "user",
+    token: "",
+    status: "Active",
   },
   {
     name: "Anne Grisley",
@@ -60,10 +110,15 @@ let users = [
     password: bcrypt.hashSync("anne", bcrypt.genSaltSync(bcryptSalt)),
     email: "anne_gr_88@gmail.com",
     phone: "637826335",
-    lng: -3.5625600,
-    lat: 40.3665000,
-    image: "http://www.allsparkfireworks.com/blog/wp-content/uploads/2014/03/firework-sparkler-girl.jpg",
+    location : { 
+      type: 'Point', 
+      coordinates: [-3.5625600, 40.3665000], 
+    },
+    imgName: "",
+    imgPath: "http://www.allsparkfireworks.com/blog/wp-content/uploads/2014/03/firework-sparkler-girl.jpg",
     type: "user",
+    token: "",
+    status: "Active",
   },
   {
     name: "Jose Mendez",
@@ -71,10 +126,15 @@ let users = [
     password: bcrypt.hashSync("jose", bcrypt.genSaltSync(bcryptSalt)),
     email: "josemen77_1@hotmail.com",
     phone: "689002318",
-    lng: -3.2525600,
-    lat: 40.8065000,
-    image: "https://a.deviantart.net/avatars-big/v/a/vampir-cat.jpg?4",
+    location : { 
+      type: 'Point', 
+      coordinates: [-3.2525600, 40.8065000], 
+    },
+    imgName: "",
+    imgPath: "https://a.deviantart.net/avatars-big/v/a/vampir-cat.jpg?4",
     type: "user",
+    token: "",
+    status: "Active",
   },
   {
     name: "Admin",
@@ -82,10 +142,14 @@ let users = [
     password: bcrypt.hashSync("admin", bcrypt.genSaltSync(bcryptSalt)),
     email: "admin@bookapp.com",
     phone: "666666666",
-    lng: -3.7025600,
-    lat: 40.4165000,
-    image: "https://icreatived.com/wp-content/uploads/2014/10/Interesting-Creative-Facebook-Profile-Picture-Ideas-25.jpg",
+    location : { 
+      type: 'Point', 
+      coordinates: [-3.7025600, 40.4165000], 
+    },
+    imgName: "",
+    imgPath: "https://icreatived.com/wp-content/uploads/2014/10/Interesting-Creative-Facebook-Profile-Picture-Ideas-25.jpg",
     type: "admin",
+    status: "Active",
   },
   {
     name: "Federico Sila",
@@ -93,10 +157,15 @@ let users = [
     password: bcrypt.hashSync("federico", bcrypt.genSaltSync(bcryptSalt)),
     email: "fede_si86@icloud.com",
     phone: "659037784",
-    lng: -3.3025600,
-    lat: 40.0165000,
-    image: "https://thewondrous.com/wp-content/uploads/2015/07/beautiful-profile-pics.jpg",
+    location : { 
+      type: 'Point', 
+      coordinates: [-3.3025600, 40.0165000], 
+    },
+    imgName: "",
+    imgPath: "https://thewondrous.com/wp-content/uploads/2015/07/beautiful-profile-pics.jpg",
     type: "user",
+    token: "",
+    status: "Active",
   },
   {
     name: "Javier Lanza",
@@ -104,10 +173,15 @@ let users = [
     password: bcrypt.hashSync("javier", bcrypt.genSaltSync(bcryptSalt)),
     email: "javi.lanz@gmail.com",
     phone: "690883482",
-    lng: -3.8125600,
-    lat: 40.8865000,
-    image: "https://profilepicturesdp.com/wp-content/uploads/2018/07/profile-picture-natural-7.jpg",
+    location : { 
+      type: 'Point', 
+      coordinates: [-3.8125600, 40.8865000], 
+    },
+    imgName: "",
+    imgPath: "https://profilepicturesdp.com/wp-content/uploads/2018/07/profile-picture-natural-7.jpg",
     type: "user",
+    token: "",
+    status: "Active",
   },
   {
     name: "Christian Gonzalez",
@@ -115,10 +189,15 @@ let users = [
     password: bcrypt.hashSync("christian", bcrypt.genSaltSync(bcryptSalt)),
     email: "chrisgon@outlook.com",
     phone: "689332401",
-    lng: -3.1235600,
-    lat: 40.9905000,
-    image: "https://www.whatsappprofiledpimages.com/wp-content/uploads/2019/01/Nature-Profile-Picture-1-300x241.jpg",
+    location : { 
+      type: 'Point', 
+      coordinates: [-3.1235600, 40.9905000], 
+    },
+    imgName: "",
+    imgPath: "https://www.whatsappprofiledpimages.com/wp-content/uploads/2019/01/Nature-Profile-Picture-1-300x241.jpg",
     type: "user",
+    token: "",
+    status: "Active",
   },
   {
     name: "Isis García",
@@ -126,29 +205,34 @@ let users = [
     password: bcrypt.hashSync("isis", bcrypt.genSaltSync(bcryptSalt)),
     email: "isis_garter1979@outlook.com",
     phone: "666903286",
-    lng: -3.2025600,
-    lat: 40.0165000,
-    image: "https://www.whatsappprofiledpimages.com/wp-content/uploads/2018/07/nature-profile5-300x289.jpg",
+    location : { 
+      type: 'Point', 
+      coordinates: [-3.2025600, 40.0165000], 
+    },
+    imgName: "",
+    imgPath: "https://www.whatsappprofiledpimages.com/wp-content/uploads/2018/07/nature-profile5-300x289.jpg",
     type: "user",
+    token: "",
+    status: "Active",
   },
 ]
 
-User.deleteMany()
-.then(() => {
-  return User.create(users)
-})
-.then(usersCreated => {
-  console.log(`${usersCreated.length} users created with the following id:`);
-  console.log(usersCreated.map(u => u._id));
-})
-.then(() => {
-  // Close properly the connection to Mongoose
-  mongoose.disconnect()
-})
-.catch(err => {
-  mongoose.disconnect()
-  throw err
-})
+// User.deleteMany()
+// .then(() => {
+//   return User.create(users)
+// })
+// .then(usersCreated => {
+//   console.log(`${usersCreated.length} users created with the following id:`);
+//   console.log(usersCreated.map(u => u._id));
+// })
+// .then(() => {
+//   // Close properly the connection to Mongoose
+//   mongoose.disconnect()
+// })
+// .catch(err => {
+//   mongoose.disconnect()
+//   throw err
+// })
 
 let books = [
   {
@@ -223,22 +307,22 @@ let books = [
   },
 ]
 
-Book.deleteMany()
-.then(() => {
-  return Book.create(books)
-})
-.then(booksCreated => {
-  console.log(`${booksCreated.length} book created with the following id:`);
-  console.log(booksCreated.map(u => u._id));
-})
-.then(() => {
-  // Close properly the connection to Mongoose
-  mongoose.disconnect()
-})
-.catch(err => {
-  mongoose.disconnect()
-  throw err
-})
+// Book.deleteMany()
+//   .then(() => {
+//     return Book.create(books)
+//   })
+//   .then(booksCreated => {
+//     console.log(`${booksCreated.length} book created with the following id:`);
+//     console.log(booksCreated.map(u => u._id));
+//   })
+//   .then(() => {
+//     // Close properly the connection to Mongoose
+//     mongoose.disconnect()
+//   })
+//   .catch(err => {
+//     mongoose.disconnect()
+//     throw err
+//   })
 
 // let posts = [
   // {
