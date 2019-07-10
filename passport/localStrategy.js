@@ -2,6 +2,7 @@ const passport      = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const User          = require('../models/user');
 const bcrypt        = require('bcrypt');
+const SlackStrategy = require('passport-slack').Strategy;
 
 passport.use(new LocalStrategy({
     usernameField: 'username',
@@ -24,4 +25,13 @@ passport.use(new LocalStrategy({
     })
     .catch(err => done(err));
   }
+));
+
+passport.use(new SlackStrategy({
+  clientID: process.env.SLACK_ID,
+  clientSecret: process.env.SLACK_SECRET
+}, (accessToken, refreshToken, profile, done) => {
+  // optionally persist profile data
+  done(null, profile);
+}
 ));

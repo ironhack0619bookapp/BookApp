@@ -17,13 +17,18 @@
             <div class="email form-group">
                 <label for="email">Email address</label>
                 <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="email">
-                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+                    else.</small>
             </div>
             {{#if message }}
             <div class="error-message">{{ message }}</div>
             {{/if}}
             <div class="container-btn-signup">
                 <button class="btn-signup">Register</button>
+                <a class="slack-login"
+                    href="https://slack.com/oauth/authorize?scope=identity.basic,identity.email,identity.team,identity.avatar&client_id=2432150752.691161987254">
+                    <img alt="Sign in with Slack" class="slack-login-picture" src="https://platform.slack-edge.com/img/sign_in_with_slack@2x.png" />
+                </a>
             </div>
         </form>
         <div class="advise-login">
