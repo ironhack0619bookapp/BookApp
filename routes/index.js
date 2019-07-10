@@ -18,6 +18,10 @@ router.get("/profile", (req, res, next) => {
   res.render("profile");
 });
 
+router.get("/chart", (req, res, next) => {
+  res.render("chart");
+});
+
 router.get("/find", (req, res, next) => {
   res.render("find");
 });
