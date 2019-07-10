@@ -324,7 +324,7 @@ let books = [
 //     throw err
 //   })
 
-let Post = [
+let posts = [
   {
     title: "Sinsajo / Mockingjay",
     price: 14,
