@@ -1,3 +1,4 @@
+
 <h2>Profile / {{user.name}}</h2>
 <img src="{{user.imgPath}}" alt="{{user.imgName}}" class="profile" id="picture">
 <br><br>
@@ -7,11 +8,9 @@
 <h3>{{user.email}}</h3>
 <h3>{{user.phone}}</h3>
 <label for="location">Location (Longitude / Latitude):</label>
-<h3>{{user.location.coordinates}}</h3>
+<h3><span id="lng">{{user.location.coordinates.[0]}}</span> / <span id="lat">{{user.location.coordinates.[1]}}</span></h3>
 <div id="map">
 
-
-  <a href="../book/finder">Find Book</a>
 
 </div>
 <br><br>
@@ -19,6 +18,8 @@
   <button onclick="Submit">Edit your data</button>
 </form>
 <br><br>
-<a href="./index">Return to Menu</a>
-{{!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDUeQXCyJDlhOtCB8JwWAk8zCxpjk6k-jo"></script> --}}
+{{!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.js"></script>--}}
+
+  {{!-- src="https://maps.googleapis.com/maps/api/js?key=YOUR-API-KEY" --}}
+<script src="https://maps.googleapis.com/maps/api/js?key={{GOOGLEMAPSAPIKEY}}"></script>
+<script src="/javascripts/script.js"></script>
