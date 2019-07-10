@@ -1,19 +1,20 @@
 <header>
-  <h2 id="bookResultTitle"> {{book.title}}</h2>
+  
 </header>
 
-{{!-- {{#each book}} --}}
+
 <div class="searchResults">
 
-  <div>
-    ISBN: {{this.isbn}}<br>
-    Author: {{this.author}}<br>
+  <div class="product">
+    <h3 id="bookResultTitle"> {{book.title}}</h3>
+    ISBN: {{book.isbn}}<br>
+    Author: {{book.author}}<br>
     Description: <br>
-    <p style="max-width: 400px">{{this.description}}</p>
+    <p clas="desc">{{book.description}}</p>
 
   </div>
 
-  <img src="{{book.image}}" alt="cover">
+  <img class="bookImg"src="{{book.image}}" alt="cover">
+
 
 </div>
-{{!-- {{/each}} --}}

@@ -1,14 +1,13 @@
 {{#each book}}
 <div>
-  <form action="bookApiResult" method="POST">
-    <h4 name="bookTitle">
-      {{this.volumeInfo.title}}
-    </h4>
+  <form action="bookCreate" method="POST">
+    <input style="display:none" name="bookTitle" value="{{this.volumeInfo.title}}" readonly />
     <br>
-    <p name="bookAuthor">{{this.volumeInfo.authors}}</p>
+    <input name="bookAuthor" value="{{this.volumeInfo.authors}}" readonly/>
     <br>
-    <p name="bookDescription"> {{this.volumeInfo.description}} </p>
+    <input name="bookDescription" value="{{this.volumeInfo.description}}"readonly/>
     <button type="submit" name="selectbtn">Select</button>
+    <p>imagen: {{this.volumeInfo.imageLinks}}</p>
   </form>
 
 </div>
