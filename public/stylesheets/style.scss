@@ -1,6 +1,5 @@
 body {
   margin:0px;
-  // padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
@@ -17,32 +16,69 @@ h2{
   background-repeat: no-repeat;
   width: 100vw;
   height: 100vh;
-  background-size: 100% 100%;
+  background-size: cover;
   display:flex;
-  align-items: center;
+  align-items: flex-start;
 }
 
-.container{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  width: 100%;
+.index-title, .login, .sign{
+  margin-left: 50px;
+  margin-top: 100px;
+  background-color:rgba(255,255,255,0.2);
+  border-radius: 20px;
+}
+
+.index-title{
+  padding:20px;
+}
+
+.p-index{
+  font-size: 16px;
+  margin-top: 20px;
+}
+
+.title-text{
+  font-size: 60px;
+}
+
+.sign-text, .login-text{
+  font-size: 60px;
+  margin: 10px 0px 20px 20px;
 }
 
 .login, .sign{
-  background-color: rgba(255,255,255,0.2);
-  width: 30%;
-  text-align: center
+  width: 30vw;
 }
 
 .username, .pass, .email, .name{
   text-align: initial;
   padding-left: 50px;
+  padding-right: 50px;
   margin:10px 0px;
 }
 
 .btn{
   margin: 20px 0px;
+}
+
+.container-btn-signup{
+  display: flex;
+  justify-content: flex-end;
+  margin: 20px 50px 20px 0px;
+}
+
+.btn-signup{
+  padding:8px;
+  border-radius: 5px;
+}
+
+.advise-login{
+  margin: 0px 50px;
+}
+
+.nav-own{
+  position:fixed;
+  width: 100vw;
 }
 
 .container-profile{
@@ -76,7 +112,7 @@ h2{
 }
 
 .footer{
-  background-color: white;
+  background-color: #343A40;
   text-align: center;
   position: fixed;
   left: 0;
@@ -87,8 +123,6 @@ h2{
 .footer-pict{
   height: 40px;
   width: 200px;
-
-
 }
 
 #map{
