@@ -1,21 +1,26 @@
 <div class="background">
-    <div class="container">
-        <div class="login">
-            <h2>Login</h2>
-            <form action="/auth/login" method="POST">
-                <div class="username">
-                    <label for="username" name="username">User Name:</label>
-                    <input id="username" type="text" name="username" placeholder="name" autofocus>
-                </div>
+    <div class="login">
+        <h2 class="sign-text">Login</h2>
+        <form action="/auth/login" method="POST">
+            <div class="username form-group">
+                <label for="username" name="username">User Name</label>
+                <input id="username" class="form-control" type="text" name="username" autofocus>
+            </div>
+            <div class="pass form-group">
                 <label for="password">Password</label>
-                <input id="password" type="password" name="password" placeholder="Your password">
-                <br>
-                {{#if message }}
-                <div class="error-message">{{ message }}</div>
-                {{/if}}
-                <button>Acceder</button>
-            </form>
-        <a href="../">Create new account</a>
+                <input id="password" class="form-control" type="password" name="password">
+            </div>
+            {{#if message }}
+            <div class="error-message">{{ message }}</div>
+            {{/if}}
+            <div class="container-btn-signup">
+                <button class="btn-signup">Get In</button>
+            </div>
+        </form>
+        <div class="advise-login">
+            <p class="account-message">
+                <a href="/auth/signup">Create new account</a>
+            </p>
         </div>
     </div>
 </div>
