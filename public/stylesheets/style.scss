@@ -131,17 +131,17 @@ h2{
   margin-top: 100px;
 }
 
+
 .searchResults{
   text-align: center;
-}
-.searchResults{
+  width: 800px;
   display: flex;
   justify-content: center;
 }
 .searchResults p{
   text-align: justify;
 }
-.searchResults img{
+.bookImg{
   margin-left: 20px;
   max-width:600px;
   max-height:300px;

@@ -25,10 +25,6 @@ mongoose
         console.log(`${usersCreated.length} users created with the following id:`);
         console.log(usersCreated.map(u => u._id));
       })
-      .then(() => {
-        // Close properly the connection to Mongoose
-        mongoose.disconnect()
-      })
       .catch(err => {
         mongoose.disconnect()
         throw err
@@ -362,19 +358,19 @@ let posts = [
   },
 ]
 
-Post.deleteMany()
-.then(() => {
-  return Post.create(posts)
-})
-.then(postsCreated => {
-  console.log(`${postsCreated.length} post created with the following id:`);
-  console.log(postsCreated.map(u => u._id));
-})
-.then(() => {
-  // Close properly the connection to Mongoose
-  mongoose.disconnect()
-})
-.catch(err => {
-  mongoose.disconnect()
-  throw err
-})
+// Post.deleteMany()
+// .then(() => {
+//   return Post.create(posts)
+// })
+// .then(postsCreated => {
+//   console.log(`${postsCreated.length} post created with the following id:`);
+//   console.log(postsCreated.map(u => u._id));
+// })
+// .then(() => {
+//   // Close properly the connection to Mongoose
+//   mongoose.disconnect()
+// })
+// .catch(err => {
+//   mongoose.disconnect()
+//   throw err
+// })

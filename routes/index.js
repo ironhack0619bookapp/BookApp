@@ -1,8 +1,13 @@
+
+require('dotenv').config();
 const express = require("express");
 const router = express.Router();
 const Post = require("../models/post");
 const Book = require("../models/book");
 const axios = require("axios");
+const googleKey = process.env.GKEY;
+
+
 
 /* GET home page */
 router.get("/", (req, res, next) => {
@@ -90,7 +95,7 @@ router.post("/bookresult", (req, res, next) => {
       if (book == null) {
         
         axios
-          .get(`https://www.googleapis.com/books/v1/volumes?q=${bookTitle}`)
+          .get(`https://www.googleapis.com/books/v1/volumes?q=${bookTitle}&maxResults=5&key=${googleKey}`)
           .then(bookData => {
             // console.log("esto es book:"+book)
             // console.log(bookData)
@@ -115,10 +120,11 @@ router.post("/bookresult", (req, res, next) => {
 
             const book = bookData.data.items
             // console.log(book.volumeInfo.industryIdentifiers[0].identifier)
-            //console.log(book)
+            // console.log(book.volumeInfo)
             res.render("bookApiResult", { book });
           });
       } else {
+        
         res.render("bookresult", { book });
       }
     })
@@ -127,14 +133,15 @@ router.post("/bookresult", (req, res, next) => {
     });
 });
 
-router.post("/bookApiResult", (req, res, next)=>{
-  console.log(req.body.book)
+router.post("/bookCreate", (req, res, next)=>{
+  //const image = Object.values(imageLinks)[0];
+  //console.log(image)
   Book.create({
     title: req.body.bookTitle,
     author: req.body.bookAuthor,
     description: req.body.bookDescription
-
-  }).then( newBook =>{
+    
+  }).then(() =>{
     res.redirect("/findbook")
   })
 })
