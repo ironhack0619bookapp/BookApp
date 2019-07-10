@@ -16,20 +16,21 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   );
 
-axios
-  .get("http://localhost:3000/json")
-  .then(JSONPayload => {
-    console.log(JSONPayload)
-    JSONPayload.data.place.forEach(place => {
-      const marker = new google.maps.Marker({
-        position: {
-          lng: place.location.coordinates[0],
-          lat: place.location.coordinates[1],
-        },
-        animation: google.maps.Animation.DROP,
-        draggable: true,
-        map: map,
-        title: place.name
-      });
-    })
-  })
+// axios
+//   .get("http://localhost:3000/json")
+//   .then(JSONPayload => {
+//     console.log(JSONPayload)
+//     JSONPayload.data.place.forEach(place => {
+//       const marker = new google.maps.Marker({
+//         position: {
+//           lng: place.location.coordinates[0],
+//           lat: place.location.coordinates[1],
+//         },
+//         animation: google.maps.Animation.DROP,
+//         draggable: true,
+//         map: map,
+//         title: place.name
+//       });
+//     })
+//   })
+  
