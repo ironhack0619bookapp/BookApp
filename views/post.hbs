@@ -1,4 +1,5 @@
 <form action="/posted-ad" method="POST">
+<br><br><br>
   Title:<br>
   <input type="text" name="postTitle">
   <br> Price: <br>
@@ -9,6 +10,7 @@
     <option value="venta">Sell</option>
     <option value="intercambio">Swap</option>
   </select>
+  <input type="hidden" name="_id" value="{{user}}">
   <br>
   Description:<br>
   <textarea name="postDescription" rows="10" cols="40"

@@ -23,7 +23,17 @@ router.get("/find", (req, res, next) => {
 });
 
 router.get("/post", (req, res, next) => {
-  res.render("post");
+  const user = req.session.passport.user
+  res.render("post", {user: user});
+});
+
+router.get("/mypost", (req, res, next) => {
+  const user = req.session.passport.user
+  console.log(user)
+  Post.find({ author: user })
+    .then(yourPosts => {console.log("*****************"+yourPosts)
+      res.render("post-list", { yourPosts });
+    });
 });
 router.get("/post-list", (req, res, next) => {
   Post.find()
@@ -62,8 +72,9 @@ router.post("/update/:id", (req, res, next) => {
 });
 
 router.post("/posted-ad", (req, res) => {
-  const { postTitle, postPrice, postType, postDescription } = req.body;
+  const { postTitle, postPrice, postType, postDescription, _id } = req.body;
   Post.create({
+    author: _id,
     title: postTitle,
     price: postPrice,
     type: postType,
