@@ -21,6 +21,11 @@ h2{
   align-items: flex-start;
 }
 
+.adapt-content{
+  padding-top:60px;
+  padding-left:20px;
+}
+
 .index-title, .login, .sign{
   margin-left: 50px;
   margin-top: 100px;
@@ -62,14 +67,39 @@ h2{
 }
 
 .container-btn-signup{
-  display: flex;
+  display: wrap;
+  flex-wrap: wrap;
   justify-content: flex-end;
   margin: 20px 50px 20px 0px;
 }
 
+.slack-login-picture{
+  margin-left: 50px;
+  margin-top:-2px;
+  height: 38px;
+}
+
+.logout{
+  margin-left:30px;
+}
+
+.link-without{
+  cursor: default;
+}
+
+.welcome-nav{
+  margin: 0px 50px;
+}
+
+.sep{
+  margin-right: 30px;
+}
+
 .btn-signup{
   padding:8px;
+  margin-left: 50px;
   border-radius: 5px;
+  margin-bottom: 10px;
 }
 
 .advise-login{

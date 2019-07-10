@@ -29,7 +29,7 @@ router.get("/index", ensureLogin.ensureLoggedIn(), (req, res, next) => {
 
 router.get("/all-users", ensureLogin.ensureLoggedIn(), (req, res, next) => {
   User.find().then(users => {
-    res.render('auth/all-users', { users })
+    res.render('auth/all-users', { users , user: req.user})
   })
     .catch((err) => {
       console.log(err)
@@ -42,21 +42,6 @@ router.post("/login", passport.authenticate("local", {
   failureFlash: true,
   passReqToCallback: true
 }));
-
-
-
-// OAuth callback url
-// router.get('/slack/callback', 
-//   passport.authenticate('slack', { failureRedirect: '/login' }),
-//   (req, res) => {
-//     res.redirect('/')
-//   }
-// );
-
-// path to start the OAuth flow
-// router.get('/slack', passport.authenticate('slack'), (req, res, next) => {
-//   next()
-// });
 
 router.get("/signup", (req, res, next) => {
   res.render("auth/signup");
@@ -115,9 +100,9 @@ router.post("/signup", (req, res, next) => {
         <a
         href="http://localhost:3000/auth/confirm/${token}">Click here</a> and discover books meeting people.`
         })
-          .then(info => console.log(info))
-          .catch(error => console.log(error))
-        res.redirect("/auth/confirm");
+        .then(() => res.redirect("/auth/confirm"))
+        .catch(error => console.log(error))
+
       })
       .catch(err => {
         res.render("auth/signup", { message: "Something went wrong" });
@@ -231,6 +216,14 @@ router.post('/password/:id', (req, res, next) => {
       res.redirect('/');
     })
 });
+
+router.get(
+  "/auth/slack/callback",
+  passport.authenticate("slack", {
+      successRedirect: "/auth/index",
+      failureRedirect: "/auth/signup"
+  })
+);
 
 router.get("/security", ensureLogin.ensureLoggedIn(), (req, res, next) => {
   res.render("auth/security", { user: req.user });
