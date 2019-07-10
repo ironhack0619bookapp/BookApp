@@ -1,52 +1,7 @@
 <div class="background">
-    <div class="container">
-        <div class="sign">
-            <h2>Sign Up</h2>
-            <form action="/auth/signup" method="POST">
-                <div class="username">
-                    <label for="username" name="username">User Name:</label>
-                    <input id="username" type="text" name="username" autofocus>
-                </div>
-                <div class="pass">
-                    <label for="password">Password:</label>
-                    <input id="password" type="password" name="password">
-                </div>
-                <div class="name">
-                    <label for="name">Name:</label>
-                    <input id="name" type="name" name="name">
-                </div>
-                <div class="email">
-                    <label for="email">Email:</label>
-                    <input id="email" type="email" name="email">
-                </div>
-                <br>
-                {{#if message }}
-                <div class="error-message">{{ message }}</div>
-                {{/if}}
-                <button>Acceder</button>
-            </form>
-            <p class="account-message">
-    Do you already have an account?
-    <a href="/auth/login">Login</a>
-  </p>
-</div>
-        {{!-- <div class="login">
-            <h2>Login</h2>
-            <form action="/auth/login" method="POST">
-                <div class="username">
-                    <label for="username" name="username">User Name:</label>
-                    <input id="username" type="text" name="username" placeholder="name" autofocus>
-                </div>
-                <div class="pass">
-                    <label for="password">Password</label>
-                    <input id="password" type="password" name="password" placeholder="Your password">
-                </div>
-                <br>
-                {{#if message }}
-                <div class="error-message">{{ message }}</div>
-                {{/if}}
-                <button>Acceder</button>
-            </form>
-        </div> --}}
+    <div class="index-title">
+        <h1 class="title-text">BookApp, <br>the social book page</h1>
+        <p class="p-index">Start today and discover a world of books meeting people.</p>
+        <a href="/auth/signup">Create new account</a>
     </div>
 </div>
