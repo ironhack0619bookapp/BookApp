@@ -29,7 +29,8 @@
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "serve-favicon": "^2.5.0",
-    "slack": "^11.0.2"
+    "slack": "^11.0.2",
+    "swag": "^0.7.0"
   },
   "devDependencies": {
     "nodemon": "^1.12.1"

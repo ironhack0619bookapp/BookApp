@@ -12,6 +12,7 @@ const path         = require('path');
 const session    = require("express-session");
 const MongoStore = require('connect-mongo')(session);
 const flash      = require("connect-flash");
+const Swag = require('swag');
     
 
 mongoose
@@ -60,7 +61,8 @@ hbs.registerHelper('ifUndefined', (value, options) => {
       return options.fn(this);
   }
 });
-  
+
+Swag.registerHelpers(hbs);
 
 // default value for title local
 app.locals.title = 'Express - Generated with IronGenerator';
