@@ -9,19 +9,19 @@
         <form action="/auth/signup" method="POST">
             <div class="username form-group">
                 <label for="username" name="username">User Name</label>
-                <input id="username" class="form-control" type="text" name="username" autofocus>
+                <input id="username" class="form-control" type="text" name="username" autofocus required>
             </div>
             <div class="pass form-group">
                 <label for="password">Password</label>
-                <input id="password" class="form-control" type="password" name="password">
+                <input id="password" class="form-control" type="password" name="password" required>
             </div>
             <div class="name form-group">
                 <label for="name">Name</label>
-                <input id="name" class="form-control" type="name" name="name">
+                <input id="name" class="form-control" type="name" name="name" required>
             </div>
             <div class="email form-group">
                 <label for="email">Email address</label>
-                <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="email">
+                <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="email" required>
                 <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
                     else.</small>
             </div>

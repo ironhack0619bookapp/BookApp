@@ -1,16 +1,20 @@
-<p>Upload your new profile picture</p>
-<form action="./update-pict" method="POST" id="form-container" enctype="multipart/form-data">
-  <section>
-    <div>
-        <img class="profile" src="{{user.imgPath}}" alt="{{imgName}}">
+<div class="background-profile background-general">
+  <div class="content-adapt">
+    <div class="container-profile">
+      <form action="./update-pict" method="POST" id="form-container" enctype="multipart/form-data">
+        <section>
+          <div>
+            <img class="profile" src="{{user.imgPath}}" alt="{{imgName}}">
+          </div>
+          <input class="file-picture" type="file" name="photo" id="picture" required>
+        </section>
+        <br>
+        {{#if message }}
+        <div class="error-message">{{ message }}</div>
+        {{/if}}
+
+        <button class="btn-edit" onclick="empty()">Upload Picture</button>
+      </form>
     </div>
-    <input type="file" name="photo" id="picture" required>
-  </section>
-  <br>
-  {{#if message }}
-  <div class="error-message">{{ message }}</div>
-  {{/if}}
-
-  <br><br>
-
-  <button onclick="empty()">Upload Picture</button>
+  </div>
+</div>

@@ -31,13 +31,13 @@ router.get("/find", (req, res, next) => {
 
 router.get("/chat", (req, res, next) => {
   const user = req.session.passport.user;
-  res.render("chat", {user: user});
+  res.render("chat", {user: req.user});
 });
 
 
 router.get("/post", (req, res, next) => {
   const user = req.session.passport.user
-  res.render("post", {user: user});
+  res.render("post", {user});
 });
 
 router.get("/mypost", (req, res, next) => {
@@ -46,27 +46,34 @@ router.get("/mypost", (req, res, next) => {
   Post.find({ author: user })
 
     .then(yourPosts => {
-      res.render("post-list", { yourPosts });
+      res.render("post-list", { yourPosts, user:req.user });
 
     });
 });
+
 router.get("/post-list", (req, res, next) => {
   const user = req.session.passport.user
   let owns = false;
   Post.find()
     .sort({ title: 1 })
     .then(yourPosts => {
-      yourPosts.forEach(element =>{
-        if(element.author == user){
-          console.log("author: "+element.author+" user id: "+user)
-          owns = true;
-          console.log(owns)
-        }
+
+    yourPosts = yourPosts.map(post =>{
+    post.idUser = req.user.id;
+    return post
+  })
+
+      // yourPosts.forEach(element =>{
+      //   if(element.author == user){
+      //     console.log("author: "+element.author+" user id: "+user)
+      //     owns = true;
+      //     console.log(owns)
+      //   }
         
-        // console.log("post author: "+element.author+" owns: "+owns)
-      })
+      //   // console.log("post author: "+element.author+" owns: "+owns)
+      // })
       
-      res.render("post-list", { yourPosts, owns });
+      res.render("post-list", { yourPosts, owns, user:req.user });
     });
 });
 
@@ -164,7 +171,7 @@ router.post("/bookresult", (req, res, next) => {
             // console.log(book.volumeInfo.industryIdentifiers[0].identifier)
             // console.log(book.volumeInfo)
             console.log(book[0].volumeInfo.imageLinks.thumbnail)
-            res.render("bookApiResult", { book });
+            res.render("bookApiResult", { book , user:req.user});
           });
       } else {
         console.log(book)

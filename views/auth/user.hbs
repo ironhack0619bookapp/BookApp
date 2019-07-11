@@ -1,12 +1,52 @@
-<div class="container-profile">
-    <div>
-        <img class="profile" src="{{userFind.imgPath}}" alt="{{userFind.imgName}}">
+<body onload="start()">
+    <div class="background-users background-general">
+        <div class="content-adapt">
+            <div class="container-profile">
+                <img class="profile" src="{{userFind.imgPath}}" alt="{{userFind.imgName}}">
+                <div class="data-container">
+                    <h2> {{userFind.name}} </h2>
+                    <h4 class="email-user">email: {{userFind.email}}</h4>
+                    <p id="address" hidden>{{userFind.address}}</p>
+                    <div class="user-map" id="map">
+
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="data-container">
-        <h2>{{userFind.name}}</h2>
-    </div>
-</div>
-<br><br><br><br>
-<a href="../../auth/all-users">All users</a>
-<br>
-<a href="../index">Return to Menu</a>
+
+    <script>
+    var geocoder;
+    var map;
+    function initialize() {
+      geocoder = new google.maps.Geocoder();
+      var latlng = new google.maps.LatLng();
+      var mapOptions = {
+        zoom: 14,
+        center: { lat: 40.4165000, lng: -3.7025600 },
+      }
+      map = new google.maps.Map(document.getElementById('map'), mapOptions);
+
+    }
+
+    function codeAddress() {
+      var address = document.getElementById('address').innerText;
+      geocoder.geocode({ 'address': address }, function (results, status) {
+        if (status == 'OK') {
+          map.setCenter(results[0].geometry.location);
+          var marker = new google.maps.Marker({
+            map: map,
+            position: results[0].geometry.location
+          });
+        } else {
+          alert('Geocode was not successful for the following reason: ' + status);
+        }
+      });
+    }
+    function start() {
+      initialize()
+      codeAddress()
+    }
+
+  </script>
+</body>
