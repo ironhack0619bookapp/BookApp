@@ -88,11 +88,15 @@ input[type=number], select {
   display: flex;
   align-items: flex-start;
   margin-top: -60px;
-  margin-left: -20px; }
+
+  margin-left: -20px;
+  margin-right: -20px; }
+
 
 .adapt-content {
   padding-top: 60px;
-  padding-left: 20px; }
+  padding-left: 20px;
+  padding-right: 20px; }
 
 .index-title, .login, .sign {
   margin-left: 50px;
@@ -145,6 +149,9 @@ input[type=number], select {
 
 .welcome-nav {
   margin: 0px 50px; }
+
+.links-index {
+  margin: 0px 35px; }
 
 .sep {
   margin-right: 30px; }

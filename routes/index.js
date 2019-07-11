@@ -43,8 +43,10 @@ router.get("/mypost", (req, res, next) => {
   const user = req.session.passport.user
   console.log(user)
   Post.find({ author: user })
+
     .then(yourPosts => {
       res.render("post-list", { yourPosts });
+
     });
 });
 router.get("/post-list", (req, res, next) => {
@@ -70,7 +72,7 @@ router.get("/post-list", (req, res, next) => {
 router.get("/post/edit", (req, res, next) => {
   Post.findOne({ _id: req.query.post_id })
     .then(post => {
-      res.render("post-edit", { post });
+      res.render("post-edit", { post, user: req.user});
     })
     .catch(error => {
       console.log(error);
@@ -109,11 +111,11 @@ router.post("/posted-ad", (req, res) => {
 });
 
 router.get("/findbook", (req, res, next) => {
-  res.render("findbook");
+  res.render("findbook", { user: req.user});
 });
 
 router.get("/bookresult", (req, res, next) => {
-  res.render("bookresult");
+  res.render("bookresult", {user: req.user});
 });
 
 

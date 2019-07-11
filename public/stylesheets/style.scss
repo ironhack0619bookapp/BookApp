@@ -97,12 +97,16 @@ input[type=number], select {
   display:flex;
   align-items: flex-start;
   margin-top:-60px;
- margin-left:-20px;
+
+  margin-left:-20px;
+  margin-right: -20px;
+
 }
 
 .adapt-content{
   padding-top:60px;
   padding-left:20px;
+  padding-right: 20px;
 }
 
 .index-title, .login, .sign{
@@ -168,6 +172,10 @@ input[type=number], select {
 
 .welcome-nav{
   margin: 0px 50px;
+}
+
+.links-index{
+  margin: 0px 35px;
 }
 
 .sep{
@@ -237,7 +245,7 @@ input[type=number], select {
 #map{
   height: 500px;
   width: 800px;
-  margin-top: 100px;
+  margin-top: 50px;
 }
 
 
