@@ -1,23 +1,30 @@
-<form action="/posted-ad" method="POST">
-<br><br><br>
-  Title:<br>
-  <input type="text" name="postTitle">
-  <br> Price: <br>
-  <input type="number" name="postPrice">
-  <br> Type:
-  <select required name="postType" required="true">
-    <option value="">None</option>
-    <option value="venta">Sell</option>
-    <option value="intercambio">Swap</option>
-  </select>
-  <input type="hidden" name="_id" value="{{user}}">
-  <br>
-  Description:<br>
-  <textarea name="postDescription" rows="10" cols="40"
-    placeholder="Enter a brief description about the book, ie: title, author, price..."
-    maxlength="200">
-  </textarea>
-  <label for="author">{{userName}}</label>
-  <br>
-  <button type="submit">Add post</button>
-</form>
+<div class="formContainer">
+  
+  
+  <div style="width: 400px; height= 300">
+    {{!-- <h3>Find your ideal book!</h3> --}}
+  <form action="/posted-ad" method="POST" class="cuestionario">
+  <br><br><br>
+    Title:<br>
+    <input type="text" name="postTitle">
+    <br> Price: <br>
+    <input type="number" name="postPrice">
+    <br> Type:
+    <select required name="postType" required="true">
+      <option value="">None</option>
+      <option value="venta">Sell</option>
+      <option value="intercambio">Swap</option>
+    </select>
+    <input type="hidden" name="_id" value="{{user}}">
+    <br>
+    Description:<br>
+    <textarea class ="textarea" name="postDescription" rows="10" cols="40"
+      placeholder="Enter a brief description about the book, ie: title, author, price..."
+      maxlength="200">
+    </textarea>
+    <label for="author">{{userName}}</label>
+    <br>
+    <button class="botonForm" type="submit">Add post</button>
+  </form>
+  </div>
+</div>
