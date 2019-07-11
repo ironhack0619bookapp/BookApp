@@ -9,11 +9,11 @@
         <form action="/auth/login" method="POST">
             <div class="username form-group">
                 <label for="username" name="username">User Name</label>
-                <input id="username" class="form-control" type="text" name="username" autofocus>
+                <input id="username" class="form-control" type="text" name="username" autofocus required>
             </div>
             <div class="pass form-group">
                 <label for="password">Password</label>
-                <input id="password" class="form-control" type="password" name="password">
+                <input id="password" class="form-control" type="password" name="password" required>
             </div>
             {{#if message }}
             <div class="error-message">{{ message }}</div>

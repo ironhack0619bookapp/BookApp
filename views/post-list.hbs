@@ -3,7 +3,6 @@
 </header>
 
 <div class="postWraper">
-
   <div class="postListContainer">
     {{#each yourPosts}}
     <div class="postList">
@@ -13,11 +12,12 @@
       Price: {{this.price}} <br>
       <p style="max-width: 400px">{{this.description}}</p>
       {{!-- <label for="author">{{this.author}}</label> --}}
+      id: {{this.idUser}}
+      author: {{this.author}}
       <br>
-
-      {{#if owns}}
-      <a href="/post/edit?post_id={{this._id}}" class="edit-button">EDIT</a>
-      {{/if}}
+      {{!-- {{#if (is_status this.author this.idUser)}}
+        <a href="/post/edit?post_id={{this._id}}" class="edit-button">EDIT</a>
+      {{/if}} --}}
 
     </div>
     {{/each}}

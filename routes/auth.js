@@ -135,10 +135,22 @@ router.get("/user/:ID", (req, res) => {
   else{
     User.findById(req.params.ID) 
     .then((userFind) => {
+      // if(req.user.type === "admin"){
+      //   res.redirect("../../auth/profile-admin", {userFind});
+      // }
       res.render('auth/user', { user:req.user ,userFind })
     });
   }
 })
+
+// router.get("/profile-admin", (req, res) => {
+//   if(req.user.type === "admin"){
+//     res.render("profile-admin",{user:req.user ,userFind});
+//   }
+//   else{
+//     res.redirect("all-users");
+//   }
+// })
 
 router.get('/:id/edit', (req, res, next) => {
   User.findById(req.params.ID) 
@@ -213,7 +225,7 @@ router.post('/password/:id', (req, res, next) => {
       password: hashPass,
     })
     .then(updatedData => {
-      res.redirect('/');
+      res.redirect('/auth/login');
     })
 });
 
