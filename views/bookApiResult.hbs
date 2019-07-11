@@ -1,16 +1,25 @@
-{{#each book}}
-<div>
-  <form action="bookCreate" method="POST">
-    <input style="display:none" name="bookTitle" value="{{this.volumeInfo.title}}" readonly />
-    <br>
-    <input name="bookAuthor" value="{{this.volumeInfo.authors}}" readonly/>
-    <br>
-    <input name="bookDescription" value="{{this.volumeInfo.description}}"readonly/>
-    <button type="submit" name="selectbtn">Select</button>
-    <p>imagen: {{this.volumeInfo.imageLinks}}</p>
-  </form>
+<div class="bookInfoWrapper">
+  {{#each book}}
+  <div class="bookInfo">
+    <div class="bookInfoCard-left">
+      <div><img src="{{this.volumeInfo.imageLinks.thumbnail}}" alt="image"></div>
+    </div>
+    <div class="bookInfoCard-right">
+      <strong><h4>{{this.volumeInfo.title}}</h4></strong>
+      <h6><strong>{{this.volumeInfo.authors }}</strong></h6>
+      <p class="description-paraf">{{this.volumeInfo.description }}</p>
+      <div>
+        <form action="bookCreate" method="POST">
+          <input class="none" type="hidden" name="bookTitle" value="{{this.volumeInfo.title}}" readonly />
+          <input type="hidden" name="bookAuthor" value="{{this.volumeInfo.authors}}" readonly />
+          <input type="hidden" name="bookDescription" value="{{this.volumeInfo.description}}" readonly />
+          <button class="btn-bookInfo-google" type="submit" name="selectbtn">Select</button>
+          <input type="hidden" name="bookImage" value="{{this.volumeInfo.imageLinks.thumbnail}}"> </input>
+        </form>
+      </div>
+    </div>
+  </div>
 
 
+  {{/each}}
 </div>
-
-{{/each}}

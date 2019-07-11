@@ -29,14 +29,13 @@ h2 {
   background-color: blue; }
 
 .postList {
-  margin: 20px;
-  border-style: solid;
-  flex: 1 0 30%;
-  border-style: 5px;
-  border-color: #9179ef;
-  width: 350px;
-  height: 300px;
-  border-radius: 10px; }
+  width: 300px;
+  margin: 5px;
+  padding: 5px;
+  -webkit-box-shadow: 0px 0px 14px 1px rgba(0, 0, 0, 0.47);
+  -moz-box-shadow: 0px 0px 14px 1px rgba(0, 0, 0, 0.47);
+  box-shadow: 0px 0px 14px 1px rgba(0, 0, 0, 0.47);
+  height: 350px; }
 
 .formContainer {
   display: flex;
@@ -80,16 +79,53 @@ input[type=number], select {
   cursor: pointer; }
 
 .background {
-  background-image: url("../images/background2.jpg");
-  background-repeat: no-repeat;
-  width: 100vw;
-  height: 100vh;
-  background-size: cover;
+
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  z-index: -100; }
+
+.bookInfoWrapper {
   display: flex;
-  align-items: flex-start;
-  margin-top: -60px;
-  margin-left: -20px;
-  margin-right: -20px; }
+  flex-direction: column;
+  align-items: center; }
+
+.bookInfo {
+  width: 600px;
+  margin: 5px;
+  padding: 5px;
+  -webkit-box-shadow: 0px 0px 14px 1px rgba(0, 0, 0, 0.47);
+  -moz-box-shadow: 0px 0px 14px 1px rgba(0, 0, 0, 0.47);
+  box-shadow: 0px 0px 14px 1px rgba(0, 0, 0, 0.47);
+  display: grid;
+  grid-template-columns: 30% 70%;
+  height: 350px; }
+  .bookInfo .bookInfoCard-left {
+    display: grid;
+    justify-items: center;
+    align-content: center; }
+  .bookInfo .bookInfoCard-right {
+    padding: 20px;
+    text-align: justify;
+    box-sizing: border-box; }
+    .bookInfo .bookInfoCard-right .description-paraf {
+      overflow-y: scroll;
+      height: 180px; }
+    .bookInfo .bookInfoCard-right h4 {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis; }
+    .bookInfo .bookInfoCard-right .btn-bookInfo-google {
+      border-radius: 10px;
+      padding: 7px 20px;
+      box-shadow: none;
+      color: white;
+      background: #9179ef;
+      border: 0;
+      margin-left: 120px; }
+
 
 .background-users {
   background: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url("../images/old-books.jpg") fixed; }
@@ -109,6 +145,7 @@ input[type=number], select {
   margin-left: -20px;
   margin-right: -20px; }
 
+
 .adapt-content {
   padding-top: 60px;
   padding-left: 20px;
@@ -120,8 +157,26 @@ input[type=number], select {
   background-color: rgba(255, 255, 255, 0.2);
   border-radius: 20px; }
 
-.index-title {
-  padding: 20px; }
+.index-title, .background, .login, .sign {
+  position: absolute;
+  top: 0;
+  left: 0; }
+
+.fullscreen-bg {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  z-index: -100; }
+
+.fullscreen-bg__video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  min-height: 50%; }
 
 .p-index {
   font-size: 16px;
@@ -266,6 +321,7 @@ input[type=number], select {
 
 #map {
   height: 500px;
+
   width: 700px;
   margin-top: 70px;
   margin-right: 50px; }
@@ -273,6 +329,7 @@ input[type=number], select {
 .map-edit {
   margin-left: 200px;
   margin-top: -100px; }
+
 
 .searchResults {
   text-align: center;
