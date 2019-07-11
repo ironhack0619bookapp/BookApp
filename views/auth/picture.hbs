@@ -4,7 +4,7 @@
     <div>
         <img class="profile" src="{{user.imgPath}}" alt="{{imgName}}">
     </div>
-    <input type="file" name="photo">
+    <input type="file" name="photo" id="picture" required>
   </section>
   <br>
   {{#if message }}
@@ -13,4 +13,4 @@
 
   <br><br>
 
-  <button>Upload Picture</button>
+  <button onclick="empty()">Upload Picture</button>

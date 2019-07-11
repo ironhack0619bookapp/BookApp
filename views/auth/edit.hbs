@@ -1,35 +1,50 @@
-<h2>Update data for {{name}}</h2>
-<img src="{{imgPath}}" alt="{{imgName}}" class="profile" id="picture">
-<a href="../picture">Change the picture</a>
-<br><br>
-<form action="../update/{{id}}" method="POST">
-    <label for="username">Username: </label>
-    <input type="text" value="{{username}}" placeholder="username" name="usernameForm" id="username">
-    <label for="name">Name: </label>
-    <input type="text" value="{{name}}" placeholder="Name" name="nameForm" id="name">
-    <label for="email">Email: </label>
-    <input type="email" value="{{email}}" placeholder="Email" name="emailForm" id="email">
-    <label for="phone">Phone: </label>
-    <input type="phone" value="{{phone}}" placeholder="Phone" name="phoneForm" id="phone">
-    <label for="search">Location</label>
-    <input id="pac-input" class="controls" type="text" placeholder="Search Box" name="address">
-    <br>
-    <div id="map">
+<div class="background-profile background-general">
+    <div class="content-adapt">
+      <div class="container-edit">
+        <img src="{{imgPath}}" alt="{{imgName}}" class="profile" id="picture">
+        <a class="link-edit-pic" href="../picture">Change the picture</a>
+        <div class="edit-separator">
+          <div>
+          <form action="../update/{{id}}" method="POST">
+            <div class="form-group">
+              <label for="username">Username </label>
+              <input type="text" class="form-control" value="{{username}}" placeholder="username" name="usernameForm" id="username">
+            </div>
+            <div class="form-group">
+              <label for="name">Name </label>
+              <input type="text" class="form-control" value="{{name}}" placeholder="Name" name="nameForm" id="name">
+            </div>
+            <div class="form-group">
+            <div class="form-group">
+              <label for="search">Address</label>
+              <input id="pac-input" class="form-control controls" type="text" placeholder="Search Box" name="address">
+            </div>
+              <label for="email">Email </label>
+              <input type="email" class="form-control" value="{{email}}" placeholder="Email" name="emailForm" id="email">
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone </label>
+              <input type="phone" class="form-control" value="{{phone}}" placeholder="Phone" name="phoneForm" id="phone">
+            </div>
+            {{#if errorMessage}}
+            <div style="padding:20px; background: red;">
+                {{errorMessage}}
+            </div>
+            {{/if}}
+            <button onclick="Submit" class="btn-edit">Update</button>
+            <a class="link-edit" href="../security">Change your password</a>
+          </form>
+          </div>
+        <div class="map-edit">
+            <div id="map">
 
+            </div>
+        </div>
+        </div>
+      </div>
     </div>
-    {{#if errorMessage}}
-    <div style="padding:20px; background: red;">
-        {{errorMessage}}
-    </div>
-    {{/if}}
-    <br><br>
-    <button onclick="Submit">Update</button>
-</form>
-
-<br><br>
-<a href="../security">Change your password</a>
-<br><br>
-<a href="../index">Return to Menu</a>
+  </div>
+</div>
 
 <script>
       // This example adds a search box to a map, using the Google Place Autocomplete
