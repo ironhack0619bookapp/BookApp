@@ -1,27 +1,125 @@
-<h2>Update data for {{name}}</h2>
-<img src="{{imgPath}}" alt="{{imgName}}" class="profile" id="picture">
-<a href="../picture">Change the picture</a>
-<br><br>
-<form action="../update/{{id}}" method="POST">
-    <label for="username">Username: </label>
-    <input type="text" value="{{username}}" placeholder="username" name="usernameForm" id="username">
-    <label for="name">Name: </label>
-    <input type="text" value="{{name}}" placeholder="Name" name="nameForm" id="name">
-    <label for="email">Email: </label>
-    <input type="email" value="{{email}}" placeholder="Email" name="emailForm" id="email">
-    <label for="phone">Phone: </label>
-    <input type="phone" value="{{phone}}" placeholder="Phone" name="phoneForm" id="phone">
-    <label for="location">Location:</label>
-    {{#if errorMessage}}
-    <div style="padding:20px; background: red;">
-        {{errorMessage}}
-    </div>
-    {{/if}}
-    <br><br>
-    <button onclick="Submit">Update</button>
-</form>
+<div class="background-profile background-general">
+    <div class="content-adapt">
+      <div class="container-edit">
+        <img src="{{imgPath}}" alt="{{imgName}}" class="profile" id="picture">
+        <a class="link-edit-pic" href="../picture">Change the picture</a>
+        <div class="edit-separator">
+          <div>
+          <form action="../update/{{id}}" method="POST">
+            <div class="form-group">
+              <label for="username">Username </label>
+              <input type="text" class="form-control" value="{{username}}" placeholder="username" name="usernameForm" id="username">
+            </div>
+            <div class="form-group">
+              <label for="name">Name </label>
+              <input type="text" class="form-control" value="{{name}}" placeholder="Name" name="nameForm" id="name">
+            </div>
+            <div class="form-group">
+            <div class="form-group">
+              <label for="search">Address</label>
+              <input id="pac-input" class="form-control controls" type="text" placeholder="Search Box" name="address">
+            </div>
+              <label for="email">Email </label>
+              <input type="email" class="form-control" value="{{email}}" placeholder="Email" name="emailForm" id="email">
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone </label>
+              <input type="phone" class="form-control" value="{{phone}}" placeholder="Phone" name="phoneForm" id="phone">
+            </div>
+            {{#if errorMessage}}
+            <div style="padding:20px; background: red;">
+                {{errorMessage}}
+            </div>
+            {{/if}}
+            <button onclick="Submit" class="btn-edit">Update</button>
+            <a class="link-edit" href="../security">Change your password</a>
+          </form>
+          </div>
+        <div class="map-edit">
+            <div id="map">
 
-<br><br>
-<a href="../security">Change your password</a>
-<br><br>
-<a href="../index">Return to Menu</a>
+            </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+      // This example adds a search box to a map, using the Google Place Autocomplete
+      // feature. People can enter geographical searches. The search box will return a
+      // pick list containing a mix of places and predicted search terms.
+
+      // This example requires the Places library. Include the libraries=places
+      // parameter when you first load the API. For example:
+      // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+
+      function initAutocomplete() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: 40.4165000, lng: -3.7025600},
+          zoom: 13,
+          mapTypeId: 'roadmap'
+        });
+
+        // Create the search box and link it to the UI element.
+        var input = document.getElementById('pac-input');
+        var searchBox = new google.maps.places.SearchBox(input);
+        {{!-- map.controls[google.maps.ControlPosition.TOP_LEFT].push(input); --}}
+
+        // Bias the SearchBox results towards current map's viewport.
+        map.addListener('bounds_changed', function() {
+          searchBox.setBounds(map.getBounds());
+        });
+
+        var markers = [];
+        // Listen for the event fired when the user selects a prediction and retrieve
+        // more details for that place.
+        searchBox.addListener('places_changed', function() {
+          var places = searchBox.getPlaces();
+
+          if (places.length == 0) {
+            return;
+          }
+
+          // Clear out the old markers.
+          markers.forEach(function(marker) {
+            marker.setMap(null);
+          });
+          markers = [];
+
+          // For each place, get the icon, name and location.
+          var bounds = new google.maps.LatLngBounds();
+          places.forEach(function(place) {
+            if (!place.geometry) {
+              console.log("Returned place contains no geometry");
+              return;
+            }
+            var icon = {
+              url: place.icon,
+              size: new google.maps.Size(71, 71),
+              origin: new google.maps.Point(0, 0),
+              anchor: new google.maps.Point(17, 34),
+              scaledSize: new google.maps.Size(25, 25)
+            };
+
+            // Create a marker for each place.
+            markers.push(new google.maps.Marker({
+              map: map,
+              icon: icon,
+              title: place.name,
+              position: place.geometry.location
+            }));
+
+            if (place.geometry.viewport) {
+              // Only geocodes have viewport.
+              bounds.union(place.geometry.viewport);
+            } else {
+              bounds.extend(place.geometry.location);
+            }
+          });
+          map.fitBounds(bounds);
+        });
+      }
+
+    </script>

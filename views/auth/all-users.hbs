@@ -1,13 +1,13 @@
-<h1>BookApp Users</h1>
-
-<div class="users">
-{{#each users}}
-    <div class="user">
-        <img src="{{this.imgPath}}" alt="{{this.username}} Picture" class="profile">
-        <h4>{{this.username}}</h4>
-        <a href="user/{{id}}">See more</a>
+<div class="background-users background-general">
+    <h1>BookApp Users</h1>
+    <div class="users">
+        {{#each users}}
+        <div class="user">
+            <img src="{{this.imgPath}}" alt="{{this.username}} Picture" class="profile">
+            <h4>{{this.username}}</h4>
+            <a href="user/{{id}}">See more</a>
+        </div>
+        {{/each}}
     </div>
-{{/each}}
+    <a href="./index">Return to Menu</a>
 </div>
-
-<a href="./index">Return to Menu</a>

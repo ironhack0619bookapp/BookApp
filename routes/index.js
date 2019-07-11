@@ -5,14 +5,15 @@ const router = express.Router();
 const Post = require("../models/post");
 const Book = require("../models/book");
 const axios = require("axios");
+
 var autocomplete = require('autocompleter');
+
 const googleKey = process.env.GKEY;
 
 
 
 /* GET home page */
 router.get("/", (req, res, next) => {
-  console.log(req.user)
   res.render("index");
 });
 
@@ -21,7 +22,7 @@ router.get("/profile", (req, res, next) => {
 });
 
 router.get("/chart", (req, res, next) => {
-  res.render("chart");
+  res.render("chart", { user: req.user });
 });
 
 router.get("/find", (req, res, next) => {
@@ -217,5 +218,9 @@ router.get("/bookNamesForAutocompleter", (req, res) => {
 //       res.redirect('/movies-list');
 //     })
 // });
+
+router.get("/login", (req, res, next) => {
+  res.redirect("/auth/index")
+})
 
 module.exports = router;
