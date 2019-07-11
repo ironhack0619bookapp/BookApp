@@ -5,7 +5,7 @@ const router = express.Router();
 const Post = require("../models/post");
 const Book = require("../models/book");
 const axios = require("axios");
-const Swag = require("swag")
+var autocomplete = require('autocompleter');
 const googleKey = process.env.GKEY;
 
 
@@ -114,8 +114,12 @@ router.get("/findbook", (req, res, next) => {
   res.render("findbook", { user: req.user});
 });
 
-router.get("/bookresult", (req, res, next) => {
-  res.render("bookresult", {user: req.user});
+router.get("/bookresult/:id", (req, res, next) => {
+  Book.findById(req.params.id)
+  .then(book => {
+    res.render("bookresult", {user: req.user, book});
+  })
+  
 });
 
 
@@ -132,9 +136,9 @@ router.post("/bookresult", (req, res, next) => {
       if (book == null) {
         
         axios
-          .get(`https://www.googleapis.com/books/v1/volumes?q=${bookTitle}&maxResults=5&key=${googleKey}`)
+          .get(`https://www.googleapis.com/books/v1/volumes?q=${bookTitle}&maxResults=3&key=${googleKey}`)
           .then(bookData => {
-            // console.log("esto es book:"+book)
+            // console.log("esto es book:"+boo2k)
             // console.log(bookData)
             // const {
             //   title,
@@ -158,11 +162,13 @@ router.post("/bookresult", (req, res, next) => {
             const book = bookData.data.items
             // console.log(book.volumeInfo.industryIdentifiers[0].identifier)
             // console.log(book.volumeInfo)
+            console.log(book[0].volumeInfo.imageLinks.thumbnail)
             res.render("bookApiResult", { book });
           });
       } else {
-        
-        res.render("bookresult", { book });
+        console.log(book)
+        //res.render("bookresult", { book });
+        res.redirect("bookresult/" + book._id)
       }
     })
     .catch(error => {
@@ -171,16 +177,24 @@ router.post("/bookresult", (req, res, next) => {
 });
 
 router.post("/bookCreate", (req, res, next)=>{
-  //const image = Object.values(imageLinks)[0];
-  //console.log(image)
   Book.create({
     title: req.body.bookTitle,
     author: req.body.bookAuthor,
-    description: req.body.bookDescription
-    
-  }).then(() =>{
-    res.redirect("/findbook")
+    description: req.body.bookDescription,
+    image: req.body.bookImage
+  }).then((book) =>{
+    res.redirect("/bookresult/" + book._id)
   })
+  .catch(error =>
+    console.log(error))
+})
+
+router.get("/bookNamesForAutocompleter", (req, res) => {
+  Book
+    .find()
+    .select({title: 1})
+    .sort({title: 1})
+    .then(allBooks => res.json(allBooks))
 })
 
 

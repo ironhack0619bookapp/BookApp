@@ -18,6 +18,7 @@ h2{
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  
 }
 //**********************
 
@@ -37,14 +38,24 @@ h2{
 
 //***********************
 .postList{
-  margin: 20px;
-  border-style: solid;
-  flex: 1 0 30%;
-  border-style: 5px;
-  border-color: #9179ef;
-  width: 350px;
-  height: 300px;
-  border-radius: 10px;
+  // margin: 20px;
+  // border-style: solid;
+  // flex: 1 0 30%;
+  // border-style: 5px;
+  // border-color: #9179ef;
+  // width: 350px;
+  // height: 300px;
+  // border-radius: 10px;
+
+  width: 300px;
+  margin: 5px;
+  padding: 5px;
+  -webkit-box-shadow: 0px 0px 14px 1px rgba(0,0,0,0.47);
+  -moz-box-shadow: 0px 0px 14px 1px rgba(0,0,0,0.47);
+  box-shadow: 0px 0px 14px 1px rgba(0,0,0,0.47);
+  // display: grid;
+  // grid-template-columns: 30% 70%;
+  height: 350px;
 }
 .formContainer{
   display: flex;
@@ -89,19 +100,85 @@ input[type=number], select {
   cursor: pointer;
 }
 .background{
-  background-image: url("../images/background2.jpg");
-  background-repeat: no-repeat;
-  width: 100vw;
-  height: 100vh;
-  background-size: cover;
-  display:flex;
-  align-items: flex-start;
-  margin-top:-60px;
+  //background-image: url("../images/background2.jpg");
+  // background-image: url("../images/tiabuena.mp4");
+  // background-repeat: no-repeat;
+  // position: relative;
+  // overflow: hidden;
+  // position: fixed;
+  
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  z-index: -100;
 
-  margin-left:-20px;
-  margin-right: -20px;
+  // width: 100vw;
+  // height: 100vh;
+  // background-size: cover;
+  // display:flex;
+  // align-items: flex-start;
+  // margin-top:-60px;
+
+  // margin-left:-20px;
+  // margin-right: -20px;
 
 }
+.bookInfoWrapper{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.bookInfo{
+  width: 600px;
+  margin: 5px;
+  padding: 5px;
+  -webkit-box-shadow: 0px 0px 14px 1px rgba(0,0,0,0.47);
+  -moz-box-shadow: 0px 0px 14px 1px rgba(0,0,0,0.47);
+  box-shadow: 0px 0px 14px 1px rgba(0,0,0,0.47);
+  display: grid;
+  grid-template-columns: 30% 70%;
+  height: 350px;
+
+  .bookInfoCard-left{
+    display: grid;
+    justify-items: center;
+    align-content: center;
+  }
+
+  .bookInfoCard-right {
+    padding: 20px;
+    text-align: justify;
+    box-sizing: border-box;
+    .description-paraf{
+      overflow-y: scroll;
+      height: 180px;
+    }
+    h4 {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    .btn-bookInfo-google {
+      border-radius: 10px;
+      padding: 7px 20px;
+      box-shadow: none;
+      color: white;
+      // border-color: #9179ef;
+      background: #9179ef;
+      border: 0;
+      margin-left: 120px;
+      
+    
+    }
+  }
+  
+}
+
+
+
 
 .adapt-content{
   padding-top:60px;
@@ -116,9 +193,32 @@ input[type=number], select {
   border-radius: 20px;
 }
 
-.index-title{
-  padding:20px;
+.index-title, .background, .login, .sign{
+  // padding:20px;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
+
+//******************************************
+.fullscreen-bg {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  
+  left: 0;
+  overflow: hidden;
+  z-index: -100;
+}
+.fullscreen-bg__video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  min-height: 50%;
+}
+//*******************************************
 
 .p-index{
   font-size: 16px;

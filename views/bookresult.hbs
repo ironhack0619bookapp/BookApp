@@ -1,20 +1,28 @@
 <header>
-  
 </header>
 
 
 <div class="searchResults">
 
-  <div class="product">
-    <h3 id="bookResultTitle"> {{book.title}}</h3>
-    ISBN: {{book.isbn}}<br>
-    Author: {{book.author}}<br>
-    Description: <br>
-    <p clas="desc">{{book.description}}</p>
+  <div class="bookInfo">
+    <div class="bookInfoCard-left ">
+      
+      <img src="{{book.image}}" alt="image">
+
+    </div>
+    <div class="bookInfoCard-right">
+      <h4> {{book.title}}</h4>
+      ISBN: {{book.isbn}}
+      Author: {{book.author}}
+     
+      <p class="description-paraf">{{book.description}}</p>
+    </div>
+    
+
 
   </div>
 
-  <img class="bookImg"src="{{book.image}}" alt="cover">
+
 
 
 </div>
