@@ -25,6 +25,9 @@ router.get("/chart", (req, res, next) => {
   res.render("chart", { user: req.user });
 });
 
+router.get("/userschart", (req, res, next) => {
+  res.render("userschart", { user: req.user });
+});
 router.get("/find", (req, res, next) => {
   res.render("find");
 });
@@ -105,12 +108,14 @@ router.post("/update/:id", (req, res, next) => {
 });
 
 router.post("/posted-ad", (req, res) => {
-  const { postTitle, postPrice, postType, postDescription, _id } = req.body;
+  console.log("******"+req.body.selectpicker)
+  const { postTitle, postPrice, postType, postDescription, _id, bookId } = req.body;
   Post.create({
     author: _id,
     title: postTitle,
     price: postPrice,
     type: postType,
+    book: bookId,
     description: postDescription
   }).then(newPostCreated => {
     res.redirect("/post-list");

@@ -12,7 +12,7 @@
     Book <br>
     <select name="bookSelect" id="bookSelect">
       {{#each book}}
-      <option value="{{this.id}}">{{this.title}}</option>
+      <option name="bookId" value="{{this.id}}">{{this.title}}</option>
 
       {{/each}}
 
