@@ -5,6 +5,7 @@ const router = express.Router();
 const Post = require("../models/post");
 const Book = require("../models/book");
 const axios = require("axios");
+const Swag = require("swag")
 const googleKey = process.env.GKEY;
 
 
@@ -27,6 +28,12 @@ router.get("/find", (req, res, next) => {
   res.render("find");
 });
 
+router.get("/chat", (req, res, next) => {
+  const user = req.session.passport.user;
+  res.render("chat", {user: user});
+});
+
+
 router.get("/post", (req, res, next) => {
   const user = req.session.passport.user
   res.render("post", {user: user});
@@ -36,15 +43,27 @@ router.get("/mypost", (req, res, next) => {
   const user = req.session.passport.user
   console.log(user)
   Post.find({ author: user })
-    .then(yourPosts => {console.log("*****************"+yourPosts)
+    .then(yourPosts => {
       res.render("post-list", { yourPosts });
     });
 });
 router.get("/post-list", (req, res, next) => {
+  const user = req.session.passport.user
+  let owns = false;
   Post.find()
     .sort({ title: 1 })
     .then(yourPosts => {
-      res.render("post-list", { yourPosts });
+      yourPosts.forEach(element =>{
+        if(element.author == user){
+          console.log("author: "+element.author+" user id: "+user)
+          owns = true;
+          console.log(owns)
+        }
+        
+        // console.log("post author: "+element.author+" owns: "+owns)
+      })
+      
+      res.render("post-list", { yourPosts, owns });
     });
 });
 

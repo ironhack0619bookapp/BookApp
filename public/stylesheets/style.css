@@ -8,6 +8,77 @@ a {
 h2 {
   font-size: 50px; }
 
+.postWraper {
+  display: flex;
+  flex-direction: row; }
+
+.postListContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap; }
+
+.parent {
+  display: flex;
+  flex-wrap: wrap; }
+
+.child {
+  flex: 1 0 21%;
+  /* explanation below */
+  margin: 5px;
+  height: 100px;
+  background-color: blue; }
+
+.postList {
+  margin: 20px;
+  border-style: solid;
+  flex: 1 0 30%;
+  border-style: 5px;
+  border-color: #9179ef;
+  width: 350px;
+  height: 300px;
+  border-radius: 10px; }
+
+.formContainer {
+  display: flex;
+  justify-content: center; }
+
+input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box; }
+
+.textarea {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box; }
+
+input[type=number], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box; }
+
+.botonForm {
+  width: 100%;
+  background-color: #9179ef;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer; }
+
 .background {
   background-image: url("../images/background2.jpg");
   background-repeat: no-repeat;
@@ -15,7 +86,9 @@ h2 {
   height: 100vh;
   background-size: cover;
   display: flex;
-  align-items: flex-start; }
+  align-items: flex-start;
+  margin-top: -60px;
+  margin-left: -20px; }
 
 .adapt-content {
   padding-top: 60px;
@@ -157,6 +230,9 @@ h2 {
   height: 1000px;
   display: flex;
   justify-content: center; }
+
+.findBackground {
+  background-image: url("../public/images/find_background.jpg"); }
 
 .searchContainer {
   position: absolute;

@@ -1,17 +1,25 @@
 <header>
-  <h2>Your Posts ({{yourPosts.length}})</h2>
+  <h2>All posts ({{yourPosts.length}})</h2>
 </header>
 
-<ul >
-  {{#each yourPosts}}
-  <li>{{this.title}}<br>
-    Category: {{this.type}}<br>
-    Price: {{this.price}} <br>
-    <p style="max-width: 400px">{{this.description}}</p>
-    <label for="author">{{this.author}}</label>
-  </li>
-  <a href="/post/edit?post_id={{this._id}}" class="edit-button">EDIT</a>
- 
-  {{/each}}
-</ul>
+<div class="postWraper">
 
+  <div class="postListContainer">
+    {{#each yourPosts}}
+    <div class="postList">
+
+      {{this.title}}<br>
+      Category: {{this.type}}<br>
+      Price: {{this.price}} <br>
+      <p style="max-width: 400px">{{this.description}}</p>
+      {{!-- <label for="author">{{this.author}}</label> --}}
+      <br>
+
+      {{#if owns}}
+      <a href="/post/edit?post_id={{this._id}}" class="edit-button">EDIT</a>
+      {{/if}}
+
+    </div>
+    {{/each}}
+  </div>
+</div>
