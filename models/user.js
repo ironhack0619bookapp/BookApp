@@ -7,12 +7,13 @@ const userSchema = new Schema({
   password: String,
   email: String,
   phone: String,
-  location: { 
-    type: {
-        type: String
-    },
-    coordinates: [Number]
-  },
+  address: String,
+  // location: { 
+  //   type: {
+  //       type: String
+  //   },
+  //   coordinates: [Number]
+  // },
   imgName: String,
   imgPath: String,
   type: {

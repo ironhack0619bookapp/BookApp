@@ -55,10 +55,10 @@ router.post("/signup", (req, res, next) => {
   const password = req.body.password;
   const name = req.body.name;
   const email = req.body.email;
-  const placeLocation = { 
-    type: 'Point', 
-    coordinates: [-4.0000000, 40.0000000] 
-  }
+  // const placeLocation = { 
+  //   type: 'Point', 
+  //   coordinates: [-4.0000000, 40.0000000] 
+  // }
   const characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
   let token = '';
   for (let i = 0; i < 25; i++) {
@@ -83,8 +83,9 @@ router.post("/signup", (req, res, next) => {
       username: username,
       password: hashPass,
       email: email,
+      address: "Madrid, España",
       phone: "",
-      location: placeLocation,
+      // location: placeLocation,
       imgName: "Profile Picture",
       imgPath: "https://image.flaticon.com/icons/svg/149/149071.svg",
       type: "user",
@@ -173,6 +174,7 @@ router.post('/update/:id', (req, res, next) => {
   const name = req.body.nameForm;
   const email = req.body.emailForm;
   const phone = req.body.phoneForm;
+  const address = req.body.address;
   const id = req.params.id;
   if (username === "" || name === "" || email === "" || phone === "") {
     res.redirect('/auth/' + id + '/edit');
@@ -183,7 +185,8 @@ router.post('/update/:id', (req, res, next) => {
       username: username,
       name: name,
       email: email,
-      phone: phone
+      phone: phone, 
+      address: address,
     }, { new: true })
     .then(updatedData => {
       res.redirect('../../auth/profile');

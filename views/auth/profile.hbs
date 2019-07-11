@@ -1,25 +1,58 @@
+<body onload="start()">
 
-<h2>Profile / {{user.name}}</h2>
-<img src="{{user.imgPath}}" alt="{{user.imgName}}" class="profile" id="picture">
-<br><br>
-<label for="username">Username: </label>
-<h3>{{user.username}}</h3>
-<h3>{{user.name}}</h3>
-<h3>{{user.email}}</h3>
-<h3>{{user.phone}}</h3>
-<label for="location">Location (Longitude / Latitude):</label>
-<h3><span id="lng">{{user.location.coordinates.[0]}}</span> / <span id="lat">{{user.location.coordinates.[1]}}</span></h3>
-<div id="map">
+  <h2>Profile / {{user.name}}</h2>
+  <img src="{{user.imgPath}}" alt="{{user.imgName}}" class="profile" id="picture">
+  <br><br>
+  <label for="username">Username: </label>
+  <h3>{{user.username}}</h3>
+  <h3>{{user.name}}</h3>
+  <h3>{{user.email}}</h3>
+  <h3>{{user.phone}}</h3>
+  {{!-- <label for="location">Location (Longitude / Latitude):</label>
+<h3><span id="lng">{{user.location.coordinates.[0]}}</span> / <span id="lat">{{user.location.coordinates.[1]}}</span></h3> --}}
+  <label for="location">Location (Longitude / Latitude):</label>
+  <h3 id="address">{{user.address}}</h3>
+  <div id="map">
 
+  </div>
+  <br><br>
+  <form action="../auth/{{user.id}}/edit" method="GET">
+    <button onclick="Submit">Edit your data</button>
+  </form>
+  <br><br>
 
-</div>
-<br><br>
-<form action="../auth/{{user.id}}/edit" method="GET">
-  <button onclick="Submit">Edit your data</button>
-</form>
-<br><br>
-{{!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.js"></script>--}}
+  <script>
+    var geocoder;
+    var map;
+    function initialize() {
+      geocoder = new google.maps.Geocoder();
+      var latlng = new google.maps.LatLng();
+      var mapOptions = {
+        zoom: 14,
+        center: { lat: 40.4165000, lng: -3.7025600 },
+      }
+      map = new google.maps.Map(document.getElementById('map'), mapOptions);
 
-  {{!-- src="https://maps.googleapis.com/maps/api/js?key=YOUR-API-KEY" --}}
-<script src="https://maps.googleapis.com/maps/api/js?key={{GOOGLEMAPSAPIKEY}}"></script>
-<script src="/javascripts/script.js"></script>
+    }
+
+    function codeAddress() {
+      var address = document.getElementById('address').innerText;
+      geocoder.geocode({ 'address': address }, function (results, status) {
+        if (status == 'OK') {
+          map.setCenter(results[0].geometry.location);
+          var marker = new google.maps.Marker({
+            map: map,
+            position: results[0].geometry.location
+          });
+        } else {
+          alert('Geocode was not successful for the following reason: ' + status);
+        }
+      });
+    }
+    function start() {
+      initialize()
+      codeAddress()
+    }
+
+  </script>
+</body>
