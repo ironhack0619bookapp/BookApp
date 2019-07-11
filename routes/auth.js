@@ -141,9 +141,10 @@ router.get("/user/:ID", (req, res) => {
 })
 
 router.get('/:id/edit', (req, res, next) => {
-  User.findById(req.params.id, (err, user) => {
-    res.render('auth/edit', user)
-  });
+  User.findById(req.params.ID) 
+    .then((userFind) => {
+      res.render('auth/edit', { user:req.user ,userFind })
+    });
 });
 
 router.get("/edit", ensureLogin.ensureLoggedIn(), (req, res, next) => {
