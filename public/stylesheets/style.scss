@@ -10,15 +10,16 @@ a {
 h2{
   font-size: 50px;
 }
+
 .postWraper{
   display:flex;
   flex-direction: row;
 }
+
 .postListContainer{
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  
 }
 //**********************
 
@@ -57,10 +58,12 @@ h2{
   // grid-template-columns: 30% 70%;
   height: 350px;
 }
+
 .formContainer{
   display: flex;
   justify-content: center;
 }
+
 input[type=text], select {
   width: 100%;
   padding: 12px 20px;
@@ -70,6 +73,7 @@ input[type=text], select {
   border-radius: 4px;
   box-sizing: border-box;
 }
+
 .textarea{
   width: 100%;
   padding: 12px 20px;
@@ -89,6 +93,7 @@ input[type=number], select {
   border-radius: 4px;
   box-sizing: border-box;
 }
+
 .botonForm {
   width: 100%;
   background-color: #9179ef;
@@ -99,6 +104,7 @@ input[type=number], select {
   border-radius: 4px;
   cursor: pointer;
 }
+
 .background{
 
   //background-image: url("../images/background2.jpg");
@@ -126,11 +132,13 @@ input[type=number], select {
   // margin-right: -20px;
 
 }
+
 .bookInfoWrapper{
   display: flex;
   flex-direction: column;
   align-items: center;
 }
+
 .bookInfo{
   width: 600px;
   margin: 5px;
@@ -152,31 +160,32 @@ input[type=number], select {
     padding: 20px;
     text-align: justify;
     box-sizing: border-box;
-    .description-paraf{
+
+    .description-paraf {
       overflow-y: scroll;
       height: 180px;
     }
-    h4 {
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-    }
-
-    .btn-bookInfo-google {
-      border-radius: 10px;
-      padding: 7px 20px;
-      box-shadow: none;
-      color: white;
-      // border-color: #9179ef;
-      background: #9179ef;
-      border: 0;
-      margin-left: 120px;
-      
-    
-    }
   }
-  
 
+  h4 {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .btn-bookInfo-google {
+    border-radius: 10px;
+    padding: 7px 20px;
+    box-shadow: none;
+    color: white;
+    // border-color: #9179ef;
+    background: #9179ef;
+    border: 0;
+    margin-left: 120px;
+    
+  
+  }
+}
 
 .background-users{
   background: linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,.5)), url("../images/old-books.jpg") fixed;
@@ -198,11 +207,7 @@ input[type=number], select {
   margin-top:-60px;
   margin-left:-20px;
   margin-right: -20px;
-
 }
-
-
-
 
 .adapt-content{
   padding-top:60px;
@@ -218,7 +223,6 @@ input[type=number], select {
 }
 
 .index-title, .background, .login, .sign{
-  // padding:20px;
   position: absolute;
   top: 0;
   left: 0;
