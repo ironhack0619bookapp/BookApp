@@ -26,7 +26,10 @@ router.get("/login", (req, res, next) => {
   res.render("auth/login", { "message": req.flash("error") });
 });
 
-router.get("/index", ensureLogin.ensureLoggedIn(), (req, res, next) => {
+router.get("/index", (req, res, next) => {
+  if (!req.user) {
+    res.redirect("/auth/login")
+  }
   res.render("auth/index", { user: req.user });
 });
 
@@ -41,7 +44,7 @@ router.get("/all-users", ensureLogin.ensureLoggedIn(), (req, res, next) => {
 
 router.post("/login", passport.authenticate("local", {
   successRedirect: "/auth/index",
-  failureRedirect: "/",
+  failureRedirect: "/auth/login",
   failureFlash: true,
   passReqToCallback: true
 }));
@@ -55,10 +58,6 @@ router.post("/signup", (req, res, next) => {
   const password = req.body.password;
   const name = req.body.name;
   const email = req.body.email;
-  // const placeLocation = { 
-  //   type: 'Point', 
-  //   coordinates: [-4.0000000, 40.0000000] 
-  // }
   const characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
   let token = '';
   for (let i = 0; i < 25; i++) {
@@ -85,7 +84,6 @@ router.post("/signup", (req, res, next) => {
       email: email,
       address: "Madrid, España",
       phone: "",
-      // location: placeLocation,
       imgName: "Profile Picture",
       imgPath: "https://image.flaticon.com/icons/svg/149/149071.svg",
       type: "user",
@@ -135,8 +133,9 @@ router.get("/user/:ID", (req, res) => {
     res.redirect("../../auth/profile");
   }
   else{
-    User.findById(req.params.ID, (err, user) => {
-      res.render('auth/user', { user })
+    User.findById(req.params.ID) 
+    .then((userFind) => {
+      res.render('auth/user', { user:req.user ,userFind })
     });
   }
 })
@@ -198,12 +197,6 @@ router.post('/password/:id', (req, res, next) => {
   const newPassword = req.body.newpasswordForm;
   const newPassword2 = req.body.newpassword2Form;
   const id = req.params.id;
-  // const saltAnt = bcrypt.genSaltSync(bcryptSalt);
-  // const hashPassAnt = bcrypt.hashSync(password, saltAnt);
-  // if (hashPassAnt !== req.user.password) {
-  //   res.render('auth/security', { errorMessage: "Incorrect password." });
-  //   return
-  // }
   if (newPassword !== newPassword2) {
     res.render('auth/security', { errorMessage: "Write different password." });
     return
@@ -235,7 +228,10 @@ router.get("/security", ensureLogin.ensureLoggedIn(), (req, res, next) => {
   res.render("auth/security", { user: req.user });
 });
 
-router.get("/profile", ensureLogin.ensureLoggedIn(), (req, res, next) => {
+router.get("/profile", (req, res, next) => {
+  if (!req.user) {
+    res.redirect("/auth/login")
+  }
   res.render("auth/profile", { user: req.user });
 });
 

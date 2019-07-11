@@ -1,25 +1,26 @@
 <body onload="start()">
+  <div class="background-profile background-general">
+    <div class="content-adapt">
+      <div class="container-profile">
+        <a href="/auth/picture"><img class="profile" src="{{user.imgPath}}" alt="{{user.imgName}}"></a>
+        <div class="data-container">
+          <h2> {{user.name}} </h2>
+          <h4>Username: {{user.username}}</h4>
+          <div class="data-profile">
+            <h3>Email: {{user.email}}</h3>
+            <h3>Phone: {{user.phone}}</h3>
+            <h3 id="address">Address: {{user.address}}</h3>
+            <form action="../auth/{{user.id}}/edit" method="GET">
+              <button onclick="Submit" class="btn-update">Edit your data</button>
+            </form>
+          </div>
+        </div>
+        <div id="map">
 
-  <h2>Profile / {{user.name}}</h2>
-  <img src="{{user.imgPath}}" alt="{{user.imgName}}" class="profile" id="picture">
-  <br><br>
-  <label for="username">Username: </label>
-  <h3>{{user.username}}</h3>
-  <h3>{{user.name}}</h3>
-  <h3>{{user.email}}</h3>
-  <h3>{{user.phone}}</h3>
-  {{!-- <label for="location">Location (Longitude / Latitude):</label>
-<h3><span id="lng">{{user.location.coordinates.[0]}}</span> / <span id="lat">{{user.location.coordinates.[1]}}</span></h3> --}}
-  <label for="location">Location (Longitude / Latitude):</label>
-  <h3 id="address">{{user.address}}</h3>
-  <div id="map">
-
+        </div>
+      </div>
+    </div>
   </div>
-  <br><br>
-  <form action="../auth/{{user.id}}/edit" method="GET">
-    <button onclick="Submit">Edit your data</button>
-  </form>
-  <br><br>
 
   <script>
     var geocoder;
