@@ -6,7 +6,7 @@ const Post = require("../models/post");
 const Book = require("../models/book");
 const axios = require("axios");
 
-var autocomplete = require('autocompleter');
+const autocomplete = require('autocompleter');
 
 const googleKey = process.env.GKEY;
 
@@ -37,7 +37,13 @@ router.get("/chat", (req, res, next) => {
 
 router.get("/post", (req, res, next) => {
   const user = req.session.passport.user
-  res.render("post", {user: user});
+  Book.find()
+  .sort({ title: 1 })
+  .then(book => {
+    res.render("post", {user: user,book:book });
+    //  console.log(book);
+    })
+  
 });
 
 router.get("/mypost", (req, res, next) => {

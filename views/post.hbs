@@ -6,9 +6,18 @@
   <form action="/posted-ad" method="POST" class="cuestionario">
   <br><br><br>
     Title:<br>
-    <input type="text" name="postTitle">
+    <input type="text" name="postTitle" id="title">
     <br> Price: <br>
     <input type="number" name="postPrice">
+    Book <br>
+    <select name="bookSelect" id="bookSelect">
+      {{#each book}}
+      <option value="{{this.id}}">{{this.title}}</option>
+
+      {{/each}}
+
+
+    </select>
     <br> Type:
     <select required name="postType" required="true">
       <option value="">None</option>
