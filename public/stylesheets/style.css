@@ -79,7 +79,6 @@ input[type=number], select {
   cursor: pointer; }
 
 .background {
-
   top: 0;
   right: 0;
   bottom: 0;
@@ -113,19 +112,18 @@ input[type=number], select {
     .bookInfo .bookInfoCard-right .description-paraf {
       overflow-y: scroll;
       height: 180px; }
-    .bookInfo .bookInfoCard-right h4 {
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis; }
-    .bookInfo .bookInfoCard-right .btn-bookInfo-google {
-      border-radius: 10px;
-      padding: 7px 20px;
-      box-shadow: none;
-      color: white;
-      background: #9179ef;
-      border: 0;
-      margin-left: 120px; }
-
+  .bookInfo h4 {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis; }
+  .bookInfo .btn-bookInfo-google {
+    border-radius: 10px;
+    padding: 7px 20px;
+    box-shadow: none;
+    color: white;
+    background: #9179ef;
+    border: 0;
+    margin-left: 120px; }
 
 .background-users {
   background: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url("../images/old-books.jpg") fixed; }
@@ -144,7 +142,6 @@ input[type=number], select {
   margin-top: -60px;
   margin-left: -20px;
   margin-right: -20px; }
-
 
 .adapt-content {
   padding-top: 60px;
@@ -321,7 +318,6 @@ input[type=number], select {
 
 #map {
   height: 500px;
-
   width: 700px;
   margin-top: 70px;
   margin-right: 50px; }
@@ -329,7 +325,6 @@ input[type=number], select {
 .map-edit {
   margin-left: 200px;
   margin-top: -100px; }
-
 
 .searchResults {
   text-align: center;
