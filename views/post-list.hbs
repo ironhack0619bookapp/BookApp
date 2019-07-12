@@ -1,5 +1,5 @@
 <header>
-  <h2>All posts ({{yourPosts.length}})</h2>
+  <h2 style="text-align: center; margin-top:20px">All posts ({{yourPosts.length}})</h2>
 </header>
 
 <div class="postWraper">
@@ -7,18 +7,37 @@
     {{#each yourPosts}}
     <div class="postList">
 
-      {{this.title}}<br>
-      Category: {{this.type}}<br>
-      Price: {{this.price}} <br>
-      <p style="max-width: 400px">{{this.description}}</p>
-      {{!-- <label for="author">{{this.author}}</label> --}}
-      id: {{this.idUser}}
-      author: {{this.author}}
-      <br>
-      {{!-- {{#if (is_status this.author this.idUser)}}
-        <a href="/post/edit?post_id={{this._id}}" class="edit-button">EDIT</a>
-      {{/if}} --}}
 
+      <h6>
+        {{this.title}}
+      </h6>
+      <strong>Category: {{this.type}}</strong>
+      <br>
+      <strong>Price: {{this.price}} </strong>
+      <div class="postListDescription">
+        <p  style="max-width: 400px">{{this.description}}</p>
+      </div>
+
+      {{!-- <label for="author">{{this.author}}</label> --}}
+      {{!-- id: {{this.idUser}}--}}
+      User: <a href='../auth/user/{{this.author}}'>{{this.author}}</a> 
+      <br>
+
+
+   
+     
+      
+      <form class="postListForm"action="/postprofile">
+
+      {{#is this.edit true}}
+        <a href="/post/edit?post_id={{this._id}}" class="edit-button">Edit</a>
+        <a href="delete">Delete</a>
+      {{/is}}
+
+
+        <button class="contactUserBtn">Contact user</button>
+      </form>
+      
     </div>
     {{/each}}
   </div>
