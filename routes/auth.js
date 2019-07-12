@@ -1,6 +1,5 @@
 require('dotenv').config();
 
-
 const express = require("express");
 const passport = require('passport');
 const router = express.Router();
@@ -35,7 +34,7 @@ router.get("/index", (req, res, next) => {
 
 router.get("/all-users", ensureLogin.ensureLoggedIn(), (req, res, next) => {
   User.find().then(users => {
-    res.render('auth/all-users', { users , user: req.user})
+    res.render('auth/all-users', { users, user: req.user })
   })
     .catch((err) => {
       console.log(err)
@@ -77,6 +76,12 @@ router.post("/signup", (req, res, next) => {
     const salt = bcrypt.genSaltSync(bcryptSalt);
     const hashPass = bcrypt.hashSync(password, salt);
 
+    console.log("*".repeat(100))
+    console.log(salt)
+    console.log(hashPass)
+    console.log(password)
+    console.log("*".repeat(100))
+
     const newUser = new User({
       name: name,
       username: username,
@@ -102,8 +107,8 @@ router.post("/signup", (req, res, next) => {
         <a
         href="http://localhost:3000/auth/confirm/${token}">Click here</a> and discover books meeting people.`
         })
-        .then(() => res.redirect("/auth/confirm"))
-        .catch(error => console.log(error))
+          .then(() => res.redirect("/auth/confirm"))
+          .catch(error => console.log(error))
 
       })
       .catch(err => {
@@ -132,30 +137,18 @@ router.get("/user/:ID", (req, res) => {
   if (req.params.ID === req.user.id) {
     res.redirect("../../auth/profile");
   }
-  else{
-    User.findById(req.params.ID) 
-    .then((userFind) => {
-      // if(req.user.type === "admin"){
-      //   res.redirect("../../auth/profile-admin", {userFind});
-      // }
-      res.render('auth/user', { user:req.user ,userFind })
-    });
+  else {
+    User.findById(req.params.ID)
+      .then((userFind) => {
+        res.render('auth/user', { user: req.user, userFind })
+      });
   }
 })
 
-// router.get("/profile-admin", (req, res) => {
-//   if(req.user.type === "admin"){
-//     res.render("profile-admin",{user:req.user ,userFind});
-//   }
-//   else{
-//     res.redirect("all-users");
-//   }
-// })
-
 router.get('/:id/edit', (req, res, next) => {
-  User.findById(req.params.ID) 
+  User.findById(req.params.ID)
     .then((userFind) => {
-      res.render('auth/edit', { user:req.user ,userFind })
+      res.render('auth/edit', { user: req.user, userFind })
     });
 });
 
@@ -197,7 +190,7 @@ router.post('/update/:id', (req, res, next) => {
       username: username,
       name: name,
       email: email,
-      phone: phone, 
+      phone: phone,
       address: address,
     }, { new: true })
     .then(updatedData => {
@@ -205,41 +198,58 @@ router.post('/update/:id', (req, res, next) => {
     })
 });
 
-router.post('/password/:id', (req, res, next) => {
+router.get("/changePassword", ensureLogin.ensureLoggedIn(), (req, res, next) => {
+  res.render("auth/security", { user: req.user });
+});
+
+router.post('/changePassword', (req, res, next) => {
   const password = req.body.passwordForm;
   const newPassword = req.body.newpasswordForm;
   const newPassword2 = req.body.newpassword2Form;
-  const id = req.params.id;
+  const id = req.user._id
+
+  console.log(password)
+
+
   if (newPassword !== newPassword2) {
-    res.render('auth/security', { errorMessage: "Write different password." });
+    res.render('auth/security', { errorMessage: "You write different password." });
     return
   }
-  if (newPassword === "") {
-    res.render('auth/security', { errorMessage: "Password can't be empty." });
+  if (newPassword.length < 3) {
+    res.render('auth/security', { errorMessage: "Password can't has less than 8 characters." });
     return
   }
-  const salt = bcrypt.genSaltSync(bcryptSalt);
-  const hashPass = bcrypt.hashSync(newPassword, salt);
+
   User
-    .findByIdAndUpdate(id, {
-      password: hashPass,
+    .findById(req.user._id)
+    .then(foundUser => {
+      if (!bcrypt.compareSync(password, foundUser.password)) {
+        res.render('auth/security', { errorMessage: "Wrong password" });
+
+        return;
+      }
+
+      const salt = bcrypt.genSaltSync(bcryptSalt);
+      const hashPass = bcrypt.hashSync(newPassword, salt);
+
+      User
+        .findByIdAndUpdate(id, {
+          password: hashPass,
+        })
+        .then(updatedData => {
+          res.render('auth/security', { successMessage: "Password has been changed." });
+        })
     })
-    .then(updatedData => {
-      res.redirect('/auth/login');
-    })
+
 });
 
 router.get(
   "/auth/slack/callback",
   passport.authenticate("slack", {
-      successRedirect: "/auth/index",
-      failureRedirect: "/auth/signup"
+    successRedirect: "/auth/index",
+    failureRedirect: "/auth/signup"
   })
 );
-
-router.get("/security", ensureLogin.ensureLoggedIn(), (req, res, next) => {
-  res.render("auth/security", { user: req.user });
-});
 
 router.get("/profile", (req, res, next) => {
   if (!req.user) {
@@ -248,7 +258,7 @@ router.get("/profile", (req, res, next) => {
   res.render("auth/profile", { user: req.user });
 });
 
-router.get("/confirm", ensureLogin.ensureLoggedIn(), (req, res, next) => {
+router.get("/confirm", (req, res, next) => {
   res.render("auth/confirm", { user: req.user });
 });
 
