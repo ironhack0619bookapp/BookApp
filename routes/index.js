@@ -84,6 +84,7 @@ router.get("/post-list", (req, res, next) => {
       })
       res.render("post-list", { yourPosts, user: req.user });
 
+
     });
 });
 
@@ -137,19 +138,24 @@ router.post("/posted-ad", (req, res) => {
     postPrice,
     postType,
     postDescription,
-    _id,
-    bookId
+    bookSelect
   } = req.body;
   Post.create({
-    author: _id,
+    author: req.user._id,
     title: postTitle,
     price: postPrice,
     type: postType,
-    book: bookId,
+    book: bookSelect,
     description: postDescription
-  }).then(newPostCreated => {
-    res.redirect("/post-list");
-  });
+  })
+  .then((post) => {
+    Post.find({book: post.book})
+    .then(yourPosts => { 
+      res.render("post-list", { yourPosts });
+    })
+    .catch(err => console.log(err))
+  })
+  .catch(err => console.log(err))
 });
 
 router.get("/findbook", (req, res, next) => {
@@ -157,10 +163,12 @@ router.get("/findbook", (req, res, next) => {
 });
 
 router.get("/bookresult/:id", (req, res, next) => {
+
   Book.findById(req.params.id)
     .then(book => {
       res.render("bookresult", { user: req.user, book });
     })
+
 
 
 });
@@ -237,5 +245,14 @@ router.get("/bookNamesForAutocompleter", (req, res) => {
 router.get("/login", (req, res, next) => {
   res.redirect("/auth/index");
 });
+
+router.post("/postBook", (req, res, next) => {
+  Post.find({ book: req.body.bookId }).then(yourPosts => {
+    res.render("post-list", { yourPosts });
+  });
+
+  console.log("diocane", req.body.bookId)
+})
+
 
 module.exports = router;
