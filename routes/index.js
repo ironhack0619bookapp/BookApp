@@ -31,60 +31,70 @@ router.get("/find", (req, res, next) => {
 
 router.get("/chat", (req, res, next) => {
   const user = req.session.passport.user;
-  res.render("chat", {user: req.user});
+  res.render("chat", { user: req.user });
 });
 
 
 router.get("/post", (req, res, next) => {
   const user = req.session.passport.user
-  res.render("post", {user});
+  res.render("post", { user });
 });
 
 router.get("/mypost", (req, res, next) => {
   const user = req.session.passport.user
   console.log(user)
   Post.find({ author: user })
-
     .then(yourPosts => {
-      res.render("post-list", { yourPosts, user:req.user });
+      yourPosts = yourPosts.map(post => {
+        post.edit = true;
+        post.aut = req.user.unsermane;
+        return post
+      })
+      res.render("post-list", { yourPosts, user: req.user });
 
     });
 });
 
 router.get("/post-list", (req, res, next) => {
-  const user = req.session.passport.user
-  let owns = false;
   Post.find()
     .sort({ title: 1 })
     .then(yourPosts => {
-
-    yourPosts = yourPosts.map(post =>{
-    post.idUser = req.user.id;
-    return post
-  })
-
-      // yourPosts.forEach(element =>{
-      //   if(element.author == user){
-      //     console.log("author: "+element.author+" user id: "+user)
-      //     owns = true;
-      //     console.log(owns)
-      //   }
-        
-      //   // console.log("post author: "+element.author+" owns: "+owns)
-      // })
-      
-      res.render("post-list", { yourPosts, owns, user:req.user });
+      yourPosts = yourPosts.map(post => {
+        if (post.author == req.user.id) {
+          post.edit = true;
+        }
+        else {
+          post.edit = false;
+        }
+        return post
+      })
+      res.render("post-list", { yourPosts, user: req.user });
     });
 });
 
 router.get("/post/edit", (req, res, next) => {
   Post.findOne({ _id: req.query.post_id })
     .then(post => {
-      res.render("post-edit", { post, user: req.user});
+      res.render("post-edit", { post, user: req.user });
     })
     .catch(error => {
       console.log(error);
     });
+});
+
+router.get('delete', (req,res,next) => {
+  Post.deleteOne({ id: id })
+    .then(post => {
+      res.redirect("../auth/index",);
+    })
+    .catch(error => {
+      console.log(error);
+      res.redirect("../auth(index");
+    });
+})
+
+router.get("/delete", (req, res, next) => {
+  res.render("delete", {id: req.query.post_id} );
 });
 
 router.post("/update/:id", (req, res, next) => {
@@ -119,15 +129,15 @@ router.post("/posted-ad", (req, res) => {
 });
 
 router.get("/findbook", (req, res, next) => {
-  res.render("findbook", { user: req.user});
+  res.render("findbook", { user: req.user });
 });
 
 router.get("/bookresult/:id", (req, res, next) => {
   Book.findById(req.params.id)
-  .then(book => {
-    res.render("bookresult", {user: req.user, book});
-  })
-  
+    .then(book => {
+      res.render("bookresult", { user: req.user, book });
+    })
+
 });
 
 
@@ -142,7 +152,7 @@ router.post("/bookresult", (req, res, next) => {
     .then(book => {
       // console.log(book.length);
       if (book == null) {
-        
+
         axios
           .get(`https://www.googleapis.com/books/v1/volumes?q=${bookTitle}&maxResults=3&key=${googleKey}`)
           .then(bookData => {
@@ -171,7 +181,7 @@ router.post("/bookresult", (req, res, next) => {
             // console.log(book.volumeInfo.industryIdentifiers[0].identifier)
             // console.log(book.volumeInfo)
             console.log(book[0].volumeInfo.imageLinks.thumbnail)
-            res.render("bookApiResult", { book , user:req.user});
+            res.render("bookApiResult", { book, user: req.user });
           });
       } else {
         console.log(book)
@@ -184,24 +194,24 @@ router.post("/bookresult", (req, res, next) => {
     });
 });
 
-router.post("/bookCreate", (req, res, next)=>{
+router.post("/bookCreate", (req, res, next) => {
   Book.create({
     title: req.body.bookTitle,
     author: req.body.bookAuthor,
     description: req.body.bookDescription,
     image: req.body.bookImage
-  }).then((book) =>{
+  }).then((book) => {
     res.redirect("/bookresult/" + book._id)
   })
-  .catch(error =>
-    console.log(error))
+    .catch(error =>
+      console.log(error))
 })
 
 router.get("/bookNamesForAutocompleter", (req, res) => {
   Book
     .find()
-    .select({title: 1})
-    .sort({title: 1})
+    .select({ title: 1 })
+    .sort({ title: 1 })
     .then(allBooks => res.json(allBooks))
 })
 
