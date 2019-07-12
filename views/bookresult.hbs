@@ -6,7 +6,7 @@
 
   <div class="bookInfo">
     <div class="bookInfoCard-left ">
-      
+
       <img src="{{book.image}}" alt="image">
 
     </div>
@@ -14,16 +14,15 @@
       <h4> {{book.title}}</h4>
       ISBN: {{book.isbn}}
       Author: {{book.author}}
-     
+      {{book.id}}
+
       <p class="description-paraf">{{book.description}}</p>
-      <button class="btnBookInfo">Select</button>
+      <form action="/postBook" method="POST"> 
+        <input type="text" style="display: none" value="{{book.id}}" name="bookId" id="">
+        <input type="submit" class="btnBookInfo" value="Select" />
+      </form>
     </div>
-    
 
-  
+
+
   </div>
-
-
-
-
-</div>

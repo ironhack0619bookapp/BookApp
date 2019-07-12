@@ -50,25 +50,20 @@ router.get("/post", (req, res, next) => {
 
 router.get("/mypost", (req, res, next) => {
   const user = req.session.passport.user;
-  Post.find({ author: user })
-  .then(yourPosts => {
+  Post.find({ author: user }).then(yourPosts => {
     res.render("post-list", { yourPosts });
   });
 });
 router.get("/post-list", (req, res, next) => {
   const user = req.session.passport.user;
-  let owns = false;
   Post.find()
     .sort({ title: 1 })
     .then(yourPosts => {
       yourPosts.forEach(element => {
-        if (element.author == user) {
-          console.log("author: " + element.author + " user id: " + user);
-          owns = true;
-        }
+       
       });
 
-      res.render("post-list", { yourPosts, owns });
+      res.render("post-list", { yourPosts });
     });
 });
 
@@ -105,19 +100,24 @@ router.post("/posted-ad", (req, res) => {
     postPrice,
     postType,
     postDescription,
-    _id,
-    bookId
+    bookSelect
   } = req.body;
   Post.create({
-    author: _id,
+    author: req.user._id,
     title: postTitle,
     price: postPrice,
     type: postType,
-    book: bookId,
+    book: bookSelect,
     description: postDescription
-  }).then(newPostCreated => {
-    res.redirect("/post-list");
-  });
+  })
+  .then((post) => {
+    Post.find({book: post.book})
+    .then(yourPosts => { 
+      res.render("post-list", { yourPosts });
+    })
+    .catch(err => console.log(err))
+  })
+  .catch(err => console.log(err))
 });
 
 router.get("/findbook", (req, res, next) => {
@@ -125,7 +125,6 @@ router.get("/findbook", (req, res, next) => {
 });
 
 router.get("/bookresult/:id", (req, res, next) => {
-  console.log(req.body.params);
   Book.findById(req.params.id).then(book => {
     res.render("bookresult", { user: req.user, book });
   });
@@ -145,24 +144,6 @@ router.post("/bookresult", (req, res, next) => {
             `https://www.googleapis.com/books/v1/volumes?q=${bookTitle}&maxResults=3&key=${googleKey}`
           )
           .then(bookData => {
-            // const {
-            //   title,
-            //   authors,
-            //   description,
-            //   imageLinks
-            // } = bookData.data.items[0].volumeInfo;
-            // const isbn =
-            //   bookData.data.items[0].volumeInfo.industryIdentifiers[1]
-            //     .identifier;
-            // const image = Object.values(imageLinks)[0];
-            // let book = {
-            //   title: title,
-            //   author: authors,
-            //   description: description,
-            //   isbn: isbn,
-            //   image: image
-            // };
-
             const book = bookData.data.items;
             res.render("bookApiResult", { book });
           });
@@ -218,5 +199,14 @@ router.get("/bookNamesForAutocompleter", (req, res) => {
 router.get("/login", (req, res, next) => {
   res.redirect("/auth/index");
 });
+
+router.post("/postBook", (req, res, next) => {
+  Post.find({ book: req.body.bookId }).then(yourPosts => {
+    res.render("post-list", { yourPosts });
+  });
+
+  console.log("diocane", req.body.bookId)
+})
+
 
 module.exports = router;
