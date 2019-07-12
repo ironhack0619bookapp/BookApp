@@ -11,13 +11,15 @@
       Category: {{this.type}}<br>
       Price: {{this.price}} <br>
       <p style="max-width: 400px">{{this.description}}</p>
+      {{!-- <a href="prueba">Edit</a> --}}
       {{!-- <label for="author">{{this.author}}</label> --}}
-      id: {{this.idUser}}
-      author: {{this.author}}
+      {{!-- id: {{this.idUser}}--}}
+      User: <a href='../auth/user/{{this.author}}'>{{this.author}}</a> 
       <br>
-      {{!-- {{#if (is_status this.author this.idUser)}}
-        <a href="/post/edit?post_id={{this._id}}" class="edit-button">EDIT</a>
-      {{/if}} --}}
+      {{#is this.edit true}}
+        <a href="/post/edit?post_id={{this._id}}" class="edit-button">Edit</a>
+        <a href="delete">Delete</a>
+      {{/is}}
 
     </div>
     {{/each}}
