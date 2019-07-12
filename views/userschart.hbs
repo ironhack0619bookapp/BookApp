@@ -1,0 +1,51 @@
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+<div class="charContainer">
+  <canvas id="myChart" width="1920" height="1080"></canvas>
+</div>
+
+<script>
+var ctx = document.getElementById('myChart').getContext('2d');
+var ctx = document.getElementById('myChart').getContext('2d');
+var chart = new Chart(ctx, {
+    // The type of chart we want to create
+    type: 'line',
+
+    // The data for our dataset
+    data: {
+        labels: ['Papolo','Falopio', 'Francho', 'Rubén',
+          'Javi', "Manolita"],
+        datasets: [{
+            label: 'Most Active Users',
+            backgroundColor: '#9179ef',
+            //borderColor: 'black',
+            data: [15, 30, 12, 18, 20, 0]
+        }]
+    },
+
+    // Configuration options go here
+    options: {
+      
+    }
+});
+</script>
+
+
+
+
+
+var chart = new Chart(ctx, {
+    // The type of chart we want to create
+    type: 'line',
+
+    // The data for our dataset
+    data: {
+        labels: ['Papolo','Falopio', 'Francho', 'Rubén',
+          'Javi', "Manolita"],
+        datasets: [{
+            label: 'Most Active Users',
+            backgroundColor: '#9179ef',
+            //borderColor: 'black',
+            data: [15, 30, 12, 18, 20, 0]
+        }]
+    },

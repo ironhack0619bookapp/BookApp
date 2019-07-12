@@ -11,6 +11,7 @@ const postSchema = new Schema({
 
   price: Number,
   description: String,
+  book: String,
   author: { type: Schema.Types.ObjectId, ref: "User" },
   type: {
     type: String, enum: ["intercambio", "venta"]
