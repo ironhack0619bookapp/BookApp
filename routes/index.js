@@ -36,34 +36,55 @@ router.get("/find", (req, res, next) => {
 
 router.get("/chat", (req, res, next) => {
   const user = req.session.passport.user;
-  res.render("chat", { user: user });
+
+  res.render("chat", { user: req.user });
 });
 
 router.get("/post", (req, res, next) => {
+/*
   const user = req.session.passport.user;
   Book.find()
     .sort({ title: 1 })
     .then(book => {
       res.render("post", { user: user, book: book });
     });
+*/
+  const user = req.session.passport.user
+  res.render("post", { user });
+
 });
 
 router.get("/mypost", (req, res, next) => {
   const user = req.session.passport.user;
-  Post.find({ author: user }).then(yourPosts => {
-    res.render("post-list", { yourPosts });
-  });
+  Post.find({ author: user })
+    .then(yourPosts => {
+      yourPosts = yourPosts.map(post => {
+        post.edit = true;
+        post.aut = req.user.unsermane;
+        return post
+      })
+      res.render("post-l>>>>>>> masterist", { yourPosts, user: req.user });
+
+    });
+
 });
+
 router.get("/post-list", (req, res, next) => {
-  const user = req.session.passport.user;
   Post.find()
     .sort({ title: 1 })
     .then(yourPosts => {
-      yourPosts.forEach(element => {
-       
-      });
+      yourPosts = yourPosts.map(post => {
+        if (post.author == req.user.id) {
+          post.edit = true;
+        }
+        else {
+          post.edit = false;
+        }
+        return post
+      })
+      res.render("post-list", { yourPosts, user: req.user });
 
-      res.render("post-list", { yourPosts });
+
     });
 });
 
@@ -71,10 +92,27 @@ router.get("/post/edit", (req, res, next) => {
   Post.findOne({ _id: req.query.post_id })
     .then(post => {
       res.render("post-edit", { post, user: req.user });
+
     })
     .catch(error => {
       console.log(error);
     });
+});
+
+router.get('delete', (req,res,next) => {
+  Post.deleteOne({ id: id })
+    .then(post => {
+      res.redirect("../auth/index",);
+
+    })
+    .catch(error => {
+      console.log(error);
+      res.redirect("../auth(index");
+    });
+})
+
+router.get("/delete", (req, res, next) => {
+  res.render("delete", {id: req.query.post_id} );
 });
 
 router.post("/update/:id", (req, res, next) => {
@@ -125,9 +163,14 @@ router.get("/findbook", (req, res, next) => {
 });
 
 router.get("/bookresult/:id", (req, res, next) => {
-  Book.findById(req.params.id).then(book => {
-    res.render("bookresult", { user: req.user, book });
-  });
+
+  Book.findById(req.params.id)
+    .then(book => {
+      res.render("bookresult", { user: req.user, book });
+    })
+
+
+
 });
 
 router.get("/bookApiResult", (req, res, next) => {
@@ -139,13 +182,16 @@ router.post("/bookresult", (req, res, next) => {
   Book.findOne({ title: bookTitle })
     .then(book => {
       if (book == null) {
+
         axios
           .get(
             `https://www.googleapis.com/books/v1/volumes?q=${bookTitle}&maxResults=3&key=${googleKey}`
           )
           .then(bookData => {
             const book = bookData.data.items;
-            res.render("bookApiResult", { book });
+            console.log(book[0].volumeInfo.imageLinks.thumbnail)
+            res.render("bookApiResult", { book, user: req.user });
+
           });
       } else {
         res.redirect("bookresult/" + book._id);

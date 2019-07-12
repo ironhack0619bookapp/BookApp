@@ -1,30 +1,30 @@
 <div class="background-profile background-general">
     <div class="content-adapt">
       <div class="container-edit">
-        <img src="{{imgPath}}" alt="{{imgName}}" class="profile" id="picture">
+        <img src="{{user.imgPath}}" alt="{{user.imgName}}" class="profile" id="picture">
         <a class="link-edit-pic" href="../picture">Change the picture</a>
         <div class="edit-separator">
           <div>
-          <form action="../update/{{id}}" method="POST">
+          <form action="../update/{{user.id}}" method="POST">
             <div class="form-group">
               <label for="username">Username </label>
-              <input type="text" class="form-control" value="{{username}}" placeholder="username" name="usernameForm" id="username">
+              <input type="text" class="form-control" value="{{user.username}}" placeholder="username" name="usernameForm" id="username">
             </div>
             <div class="form-group">
               <label for="name">Name </label>
-              <input type="text" class="form-control" value="{{name}}" placeholder="Name" name="nameForm" id="name">
+              <input type="text" class="form-control" value="{{user.name}}" placeholder="Name" name="nameForm" id="name">
             </div>
             <div class="form-group">
             <div class="form-group">
               <label for="search">Address</label>
-              <input id="pac-input" class="form-control controls" type="text" placeholder="Search Box" name="address">
+              <input id="pac-input" class="form-control controls" value={{user.address}} type="text" placeholder="Search Box" name="address">
             </div>
               <label for="email">Email </label>
-              <input type="email" class="form-control" value="{{email}}" placeholder="Email" name="emailForm" id="email">
+              <input type="email" class="form-control" value="{{user.email}}" placeholder="Email" name="emailForm" id="email">
             </div>
             <div class="form-group">
               <label for="phone">Phone </label>
-              <input type="phone" class="form-control" value="{{phone}}" placeholder="Phone" name="phoneForm" id="phone">
+              <input type="phone" class="form-control" value="{{user.phone}}" placeholder="Phone" name="phoneForm" id="phone">
             </div>
             {{#if errorMessage}}
             <div style="padding:20px; background: red;">
