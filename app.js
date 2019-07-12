@@ -65,7 +65,7 @@ hbs.registerHelper('ifUndefined', (value, options) => {
 Swag.registerHelpers(hbs);
 
 // default value for title local
-app.locals.title = 'Express - Generated with IronGenerator';
+app.locals.title = 'BookApp 📚 - Discover Books Meeting People';
 app.locals.GOOGLEMAPSAPIKEY = process.env.GOOGLEMAPSAPIKEY;
 
 // Enable authentication using session + passport

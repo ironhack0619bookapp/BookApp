@@ -3,10 +3,10 @@
 </header>
 
 <div class="postWraper">
-
   <div class="postListContainer">
     {{#each yourPosts}}
     <div class="postList">
+
 
       <h6>
         {{this.title}}
@@ -17,14 +17,23 @@
       <div class="postListDescription">
         <p  style="max-width: 400px">{{this.description}}</p>
       </div>
+
       {{!-- <label for="author">{{this.author}}</label> --}}
+      {{!-- id: {{this.idUser}}--}}
+      User: <a href='../auth/user/{{this.author}}'>{{this.author}}</a> 
       <br>
 
-      <p name="id">{{this.author}}</p>
-      {{#if owns}}
-      <a href="/post/edit?post_id={{this._id}}" class="edit-button">EDIT</a>
-      {{/if}}
+
+   
+     
+      
       <form class="postListForm"action="/postprofile">
+
+      {{#is this.edit true}}
+        <a href="/post/edit?post_id={{this._id}}" class="edit-button">Edit</a>
+        <a href="delete">Delete</a>
+      {{/is}}
+
 
         <button class="contactUserBtn">Contact user</button>
       </form>
