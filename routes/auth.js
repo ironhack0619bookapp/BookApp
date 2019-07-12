@@ -215,7 +215,7 @@ router.post('/changePassword', (req, res, next) => {
     res.render('auth/security', { errorMessage: "You write different password." });
     return
   }
-  if (newPassword.length < 3) {
+  if (newPassword.length < 8) {
     res.render('auth/security', { errorMessage: "Password can't has less than 8 characters." });
     return
   }
