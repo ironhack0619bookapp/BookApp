@@ -68,7 +68,7 @@ router.get("/mypost", (req, res, next) => {
         post.aut = req.user.unsermane;
         return post
       })
-      res.render("post-l>>>>>>> masterist", { yourPosts, user: req.user });
+      res.render("post-list", { yourPosts, user: req.user });
 
     });
 
@@ -92,8 +92,8 @@ router.get("/post-list", (req, res, next) => {
     });
 });
 
-router.get("/post/edit", (req, res, next) => {
-  Post.findOne({ _id: req.query.post_id })
+router.post("/post/edit/:id", (req, res, next) => {
+  Post.findOne({ _id: req.params.id })
     .then(post => {
       res.render("post-edit", { post, user: req.user });
 
@@ -103,20 +103,16 @@ router.get("/post/edit", (req, res, next) => {
     });
 });
 
-router.get('delete', (req,res,next) => {
-  Post.deleteOne({ id: id })
+router.post('/delete/:id', (req,res,next) => {
+  const id = req.params.id;
+  console.log(id)
+  Post.findByIdAndRemove(id)
     .then(post => {
-      res.redirect("../auth/index",);
-
+      res.redirect("../auth/index");
     })
     .catch(error => {
       console.log(error);
-      res.redirect("../auth(index");
     });
-})
-
-router.get("/delete", (req, res, next) => {
-  res.render("delete", {id: req.query.post_id} );
 });
 
 router.post("/update/:id", (req, res, next) => {
@@ -185,33 +181,11 @@ router.post("/bookresult", (req, res, next) => {
             `https://www.googleapis.com/books/v1/volumes?q=${bookTitle}&maxResults=3&key=${googleKey}`
           )
           .then(bookData => {
-            // const {
-            //   title,
-            //   authors,
-            //   description,
-            //   imageLinks
-            // } = bookData.data.items[0].volumeInfo;
-            // const isbn =
-            //   bookData.data.items[0].volumeInfo.industryIdentifiers[1]
-            //     .identifier;
-            // const image = Object.values(imageLinks)[0];
-            // let book = {
-            //   title: title,
-            //   author: authors,
-            //   description: description,
-            //   isbn: isbn,
-            //   image: image
-            // };
 
-<
-            /*const book = bookData.data.items;
-            res.render("bookApiResult", { book });*/
-
-            const book = bookData.data.items
+            const book = bookData.data.items;
+            res.render("bookApiResult", { book, user: req.user });
             // console.log(book.volumeInfo.industryIdentifiers[0].identifier)
             // console.log(book.volumeInfo)
-            console.log(book[0].volumeInfo.imageLinks.thumbnail)
-            res.render("bookApiResult", { book, user: req.user });
 
           });
       } else {
