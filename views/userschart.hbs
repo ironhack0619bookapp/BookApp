@@ -29,3 +29,23 @@ var chart = new Chart(ctx, {
     }
 });
 </script>
+
+
+
+
+
+var chart = new Chart(ctx, {
+    // The type of chart we want to create
+    type: 'line',
+
+    // The data for our dataset
+    data: {
+        labels: ['Papolo','Falopio', 'Francho', 'Rubén',
+          'Javi', "Manolita"],
+        datasets: [{
+            label: 'Most Active Users',
+            backgroundColor: '#9179ef',
+            //borderColor: 'black',
+            data: [15, 30, 12, 18, 20, 0]
+        }]
+    },

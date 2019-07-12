@@ -1,5 +1,5 @@
 <header>
-  <h2>All posts ({{yourPosts.length}})</h2>
+  <h2 style="text-align: center; margin-top:20px">All posts ({{yourPosts.length}})</h2>
 </header>
 
 <div class="postWraper">
@@ -8,17 +8,27 @@
     {{#each yourPosts}}
     <div class="postList">
 
-      {{this.title}}<br>
-      Category: {{this.type}}<br>
-      Price: {{this.price}} <br>
-      <p style="max-width: 400px">{{this.description}}</p>
+      <h6>
+        {{this.title}}
+      </h6>
+      <strong>Category: {{this.type}}</strong>
+      <br>
+      <strong>Price: {{this.price}} </strong>
+      <div class="postListDescription">
+        <p  style="max-width: 400px">{{this.description}}</p>
+      </div>
       {{!-- <label for="author">{{this.author}}</label> --}}
       <br>
 
+      <p name="id">{{this.author}}</p>
       {{#if owns}}
       <a href="/post/edit?post_id={{this._id}}" class="edit-button">EDIT</a>
       {{/if}}
+      <form class="postListForm"action="/postprofile">
 
+        <button class="contactUserBtn">Contact user</button>
+      </form>
+      
     </div>
     {{/each}}
   </div>

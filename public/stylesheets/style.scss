@@ -1,3 +1,7 @@
+*{
+	font-family: Montserrat;
+}
+
 body {
   margin:0px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
@@ -14,12 +18,14 @@ h2{
 .postWraper{
   display:flex;
   flex-direction: row;
+  margin-top: 50px;
 }
 
 .postListContainer{
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  justify-content: center;
 }
 //**********************
 
@@ -49,14 +55,75 @@ h2{
   // border-radius: 10px;
 
   width: 300px;
-  margin: 5px;
-  padding: 5px;
+  margin: 5px 5px 20px 5px;
+  padding: 15px;
   -webkit-box-shadow: 0px 0px 14px 1px rgba(0,0,0,0.47);
   -moz-box-shadow: 0px 0px 14px 1px rgba(0,0,0,0.47);
   box-shadow: 0px 0px 14px 1px rgba(0,0,0,0.47);
   // display: grid;
   // grid-template-columns: 30% 70%;
-  height: 350px;
+  height: 300px;
+  text-align: justify;
+  overflow-y: auto;
+  padding-top: 30px;
+}
+
+// .postListDescription{
+//   padding-bottom: 10px;
+// }
+
+.postList::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+ /* Estilos barra (thumb) de scroll */
+.postList::-webkit-scrollbar-thumb {
+  background: rgb(221, 218, 218);
+  // border-radius: 4px;
+}
+
+.postList::-webkit-scrollbar-thumb:active {
+  background-color: #c4b7f8;
+}
+
+.postList::-webkit-scrollbar-thumb:hover {
+  background: #c4b7f8;
+  box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+ /* Estilos track de scroll */
+.postList::-webkit-scrollbar-track {
+  background: white;
+  // border-radius: 4px;
+}
+
+.postList::-webkit-scrollbar-track:hover, 
+.postList::-webkit-scrollbar-track:active {
+  background: white;
+}
+
+.postListForm{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  position: relative;
+  padding-bottom: 30px;
+}
+
+.contactUserBtn{
+  border-radius: 10px;
+  padding: 7px 20px;
+  box-shadow: none;
+  color: white;
+  // border-color: #9179ef;
+  background: #9179ef;
+  border: 0;
+  // position: relative;
+  margin-top: 0px;
+  
+  
+
 }
 
 .formContainer{
@@ -140,15 +207,15 @@ input[type=number], select {
 }
 
 .bookInfo{
-  width: 600px;
-  margin: 5px;
-  padding: 5px;
+  width: 1000px;
+  margin: 50px 5px;
+  
   -webkit-box-shadow: 0px 0px 14px 1px rgba(0,0,0,0.47);
   -moz-box-shadow: 0px 0px 14px 1px rgba(0,0,0,0.47);
   box-shadow: 0px 0px 14px 1px rgba(0,0,0,0.47);
   display: grid;
   grid-template-columns: 30% 70%;
-  height: 350px;
+  height: 500px;
 
   .bookInfoCard-left{
     display: grid;
@@ -157,13 +224,13 @@ input[type=number], select {
   }
 
   .bookInfoCard-right {
-    padding: 20px;
+    padding: 90px 50px 10px 10px;
     text-align: justify;
     box-sizing: border-box;
 
     .description-paraf {
-      overflow-y: scroll;
-      height: 180px;
+      overflow-y: auto;
+      height: 250px;
     }
   }
 
@@ -172,7 +239,19 @@ input[type=number], select {
     white-space: nowrap;
     text-overflow: ellipsis;
   }
-
+.btnBookInfo{
+   border-radius: 10px;
+    padding: 7px 20px;
+    box-shadow: none;
+    color: white;
+    // border-color: #9179ef;
+    background: #9179ef;
+    border: 0;
+    margin-left: 230px;
+    margin-top: 10px;
+    width: 150px;
+    height:   50px;
+}
   .btn-bookInfo-google {
     border-radius: 10px;
     padding: 7px 20px;
@@ -214,6 +293,9 @@ input[type=number], select {
   padding-left:20px;
   padding-right: 20px;
 }
+.index-title{
+  margin-top: 200px;
+}
 
 .index-title, .login, .sign{
   margin-left: 50px;
@@ -228,6 +310,11 @@ input[type=number], select {
   left: 0;
 }
 
+.index-title{
+  margin-top: 200px;
+  margin-left: 50px;
+  max-width: 500px;
+}
 //******************************************
 .fullscreen-bg {
   position: fixed;
@@ -435,6 +522,8 @@ input[type=number], select {
 
 .searchResults{
   text-align: center;
+  min-width: 100vw;
+  min-height: 100vh;
   width: 800px;
   display: flex;
   justify-content: center;
