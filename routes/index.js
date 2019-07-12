@@ -57,11 +57,6 @@ router.get("/post", (req, res, next) => {
 router.get("/mypost", (req, res, next) => {
   const user = req.session.passport.user;
   Post.find({ author: user })
-/*
-  .then(yourPosts => {
-    res.render("post-list", { yourPosts });
-  });
-*/
     .then(yourPosts => {
       yourPosts = yourPosts.map(post => {
         post.edit = true;
@@ -185,31 +180,7 @@ router.post("/bookresult", (req, res, next) => {
             `https://www.googleapis.com/books/v1/volumes?q=${bookTitle}&maxResults=3&key=${googleKey}`
           )
           .then(bookData => {
-            // const {
-            //   title,
-            //   authors,
-            //   description,
-            //   imageLinks
-            // } = bookData.data.items[0].volumeInfo;
-            // const isbn =
-            //   bookData.data.items[0].volumeInfo.industryIdentifiers[1]
-            //     .identifier;
-            // const image = Object.values(imageLinks)[0];
-            // let book = {
-            //   title: title,
-            //   author: authors,
-            //   description: description,
-            //   isbn: isbn,
-            //   image: image
-            // };
-
-<
-            /*const book = bookData.data.items;
-            res.render("bookApiResult", { book });*/
-
-            const book = bookData.data.items
-            // console.log(book.volumeInfo.industryIdentifiers[0].identifier)
-            // console.log(book.volumeInfo)
+            const book = bookData.data.items;
             console.log(book[0].volumeInfo.imageLinks.thumbnail)
             res.render("bookApiResult", { book, user: req.user });
 
