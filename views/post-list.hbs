@@ -17,26 +17,18 @@
       <div class="postListDescription">
         <p  style="max-width: 400px">{{this.description}}</p>
       </div>
-
-      {{!-- <label for="author">{{this.author}}</label> --}}
-      {{!-- id: {{this.idUser}}--}}
-      User: <a href='../auth/user/{{this.author}}'>{{this.author}}</a> 
-      <br>
-
-
-   
-     
-      
-      <form class="postListForm"action="/postprofile">
-
       {{#is this.edit true}}
-        <a href="/post/edit?post_id={{this._id}}" class="edit-button">Edit</a>
-        <a href="delete">Delete</a>
+      <form class="postListForm" action="/post/edit/{{this.id}}" method="POST">
+        <button class="contactUserBtn">Edit</button> 
+      </form>
+      <form class="postListForm" action="/delete/{{this.id}}" method="POST">
+        <button class="contactUserBtn" >Delete</button>
+        </form>
       {{/is}}
 
-
-        <button class="contactUserBtn">Contact user</button>
-      </form>
+      {{#isnt this.edit true}}
+        <button class="contactUserBtn" onclick="location.href='../auth/user/{{this.author}}'">Contact user</button>
+      {{/isnt}}
       
     </div>
     {{/each}}

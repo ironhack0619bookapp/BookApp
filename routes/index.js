@@ -41,16 +41,16 @@ router.get("/chat", (req, res, next) => {
 });
 
 router.get("/post", (req, res, next) => {
-/*
+
   const user = req.session.passport.user;
   Book.find()
     .sort({ title: 1 })
     .then(book => {
       res.render("post", { user: user, book: book });
     });
-*/
-  const user = req.session.passport.user
-  res.render("post", { user });
+
+  // const user = req.session.passport.user
+  // res.render("post", { user });
 
 });
 
@@ -63,7 +63,7 @@ router.get("/mypost", (req, res, next) => {
         post.aut = req.user.unsermane;
         return post
       })
-      res.render("post-l>>>>>>> masterist", { yourPosts, user: req.user });
+      res.render("post-list", { yourPosts, user: req.user });
 
     });
 
@@ -88,8 +88,8 @@ router.get("/post-list", (req, res, next) => {
     });
 });
 
-router.get("/post/edit", (req, res, next) => {
-  Post.findOne({ _id: req.query.post_id })
+router.post("/post/edit/:id", (req, res, next) => {
+  Post.findOne({ _id: req.params.id })
     .then(post => {
       res.render("post-edit", { post, user: req.user });
 
@@ -99,20 +99,16 @@ router.get("/post/edit", (req, res, next) => {
     });
 });
 
-router.get('delete', (req,res,next) => {
-  Post.deleteOne({ id: id })
+router.post('/delete/:id', (req,res,next) => {
+  const id = req.params.id;
+  console.log(id)
+  Post.findByIdAndRemove(id)
     .then(post => {
-      res.redirect("../auth/index",);
-
+      res.redirect("../auth/index");
     })
     .catch(error => {
       console.log(error);
-      res.redirect("../auth(index");
     });
-})
-
-router.get("/delete", (req, res, next) => {
-  res.render("delete", {id: req.query.post_id} );
 });
 
 router.post("/update/:id", (req, res, next) => {
@@ -221,26 +217,6 @@ router.get("/bookNamesForAutocompleter", (req, res) => {
     .sort({ title: 1 })
     .then(allBooks => res.json(allBooks));
 });
-
-// router.post('/movie-creation', upload.single('photo'), (req, res, next) => {
-//   Movie
-//     .create({
-//       name: req.body.name,
-//       year: +req.body.year,
-//       linkIMDB: req.body.linkIMDB,
-//       photoLocation: `/uploads/${req.file.filename}`,
-//       photoName: req.file.originalname,
-//       recordedInLocation: {
-//         type: "Point",
-//         coordinates: [0, 0]
-//       },
-//       city: req.body.city,
-//       country: req.body.country
-//     })
-//     .then(newMovieCreated => {
-//       res.redirect('/movies-list');
-//     })
-// });
 
 router.get("/login", (req, res, next) => {
   res.redirect("/auth/index");
